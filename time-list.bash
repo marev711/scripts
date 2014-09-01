@@ -49,11 +49,11 @@ while (( "$#" > 1 )); do
      --variable|--variabl|--variab|--varia|--vari|--var|--va|--v|\
       -variable| -variabl| -variab| -varia| -vari| -var| -va| -v)
         variable=$1
-        shift
+        shift 2
         ;;
      --nl|--n| -nl| -n)
          nl_arg=$1
-         shift
+         shift 2
          ;;
   esac  
 done
