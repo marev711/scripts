@@ -32,7 +32,7 @@ function usage_and_exit {
   exit $exit_code
 }
 
-if [ $# -lt 1 -o $# -gt 2 ]; then
+if [ $# -lt 1 -o $# -gt 6 ]; then
   echo "Wrong number of arguments" 2>&1
   usage_and_exit
 fi
