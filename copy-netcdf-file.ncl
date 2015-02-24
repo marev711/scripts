@@ -15,6 +15,12 @@ filedimdef(fout, "time", -1,True)
 fvarnames = getfilevarnames(fin)
 do idx=0, dimsizes(fvarnames) - 1
     tmp = fin->$fvarnames(idx)$
+    if (fvarnames(idx) .eq. "lat") then
+       no_operation()
+    end if
+    if (fvarnames(idx) .eq. "lon") then
+       no_operation()
+    end if
     fout->$fvarnames(idx)$ = tmp
     delete(tmp)
 end do

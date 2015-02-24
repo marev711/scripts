@@ -16,6 +16,7 @@ begin
     end if
     f@history = history
 end
+
 undef("isfilepresent_general")
 function isfilepresent_general(file_path [1]: string)
 ;                             return_val [dimsizes(file_path)] :  logical
@@ -75,6 +76,16 @@ begin
     return file_is_present
 end
 
+undef("noop")
+procedure noop()
+begin
+end
+
+undef("no_operation")
+procedure no_operation()
+begin
+    noop()
+end
 ;undef("insert_history_attribute")
 ;procedure insert_history_attribute(target_var,
 ;                                  text_to_add [1] : string)
