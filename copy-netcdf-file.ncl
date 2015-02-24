@@ -20,6 +20,6 @@ do idx=0, dimsizes(fvarnames) - 1
 end do
 
 global_attnames = getvaratts(fin)
-do i = 0, dimsizes(global_attnames) - 1 
+do i = 0, dimsizes(global_attnames) - 1
     fout@$global_attnames(i)$ = fin@$global_attnames(i)$
-end do 
+end do
