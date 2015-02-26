@@ -19,11 +19,6 @@ end if
 file_in_array = str_split(file_in, "_")
 variable_name = file_in_array(0)
 
-; Remove output file if present
-if (isfilepresent_general(file_out)) then
-    system("rm -f " + file_out)
-end if
-
 ; Make time dimension unlimited
 fout = addfile(file_out, "c")
 filedimdef(fout, "time", -1,True)
