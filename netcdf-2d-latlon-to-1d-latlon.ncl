@@ -7,10 +7,43 @@
 ; Usage:
 ;   .//netcdf-2d-latlon-to-1d-latlon.ncl -file_in=<input-file> -out_dir=<output-dir>
 
-x_coord_name = "i"
-y_coord_name = "j"
-
 load "/home/sm_maeva/scripts/ncl-auxiliary.ncl"
+
+undef("print_usage")
+procedure print_usage()
+begin
+   print("")
+   print("Usage: ")
+   print("     ./netcdf-2d-latlon-to-1d-latlon.ncl -file_in=<input-file> -out_dir=<output-dir>")
+end
+
+undef("print_usage_and_exit")
+procedure print_usage_and_exit()
+begin
+    print_usage()
+    status_exit(0)
+end
+
+if (isdefined("h")) then
+    if (h .eq. True) then
+        print_usage_and_exit()
+    end if
+end if
+
+if (isdefined("help")) then
+    if (help .eq. True) then
+        print_usage_and_exit()
+    end if
+end if
+
+if (.not. isdefined("file_in")) then
+    print_usage_and_exit()
+end if
+
+if (.not. isdefined("out_dir")) then
+    print_usage_and_exit()
+end if
+
 
 fin = addfile(file_in, "r")
 file_in_fullpath = str_split(file_in, "/")
