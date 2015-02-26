@@ -7,19 +7,25 @@
 ; Usage:
 ;   .//netcdf-2d-latlon-to-1d-latlon.ncl -file_in=<input-file> -out_dir=<output-dir>
 
+x_coord_name = "i"
+y_coord_name = "j"
+
 load "/home/sm_maeva/scripts/ncl-auxiliary.ncl"
 
 fin = addfile(file_in, "r")
+file_in_fullpath = str_split(file_in, "/")
+file_in_base = file_in_fullpath(dimsizes(file_in_fullpath) - 1)
+
 
 ; Output file
-file_out = out_dir + "/" + file_in
+file_out = out_dir + "/" + file_in_base
 if (isfilepresent_general(file_out)) then
     print("")
     print("Output file: " + file_out + " already exists, aborting...")
     status_exit(1)
 end if
 
-file_in_array = str_split(file_in, "_")
+file_in_array = str_split(file_in_base, "_")
 variable_name = file_in_array(0)
 
 ; Make time dimension unlimited
@@ -46,11 +52,29 @@ do idx=0, dimsizes(fvarnames) - 1
     end if
     if (fvarnames(idx) .eq. variable_name) then
        varnames = getvardims(tmp)
-       lat_idx = ind(varnames .eq. "y")
-       lon_idx = ind(varnames .eq. "x")
+
+       ;; Check if 2D lat/lon dimension is name "i"/"j" or "x"/"y"
+       if (any("i" .eq. varnames)) then
+           x_coord_name = "i"
+       end if
+       if (any("j" .eq. varnames)) then
+           y_coord_name = "j"
+       end if
+       if (any("x" .eq. varnames)) then
+           x_coord_name = "x"
+       end if
+       if (any("y" .eq. varnames)) then
+           y_coord_name = "y"
+       end if
+
+       ;; Replace with 1D dims
+       lat_idx = ind(varnames .eq. y_coord_name)
+       lon_idx = ind(varnames .eq. x_coord_name)
        tmp!lat_idx = "lat"
+       delete(tmp&lat)
        tmp&lat = lat
        tmp!lon_idx = "lon"
+       delete(tmp&lon)
        tmp&lon = lon
     end if
     fout->$fvarnames(idx)$ = tmp
