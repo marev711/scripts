@@ -26,12 +26,10 @@ all_vars = []
 for root, dirs, files in os.walk(args.rootdir):
     if len(dirs) > 0:
         continue
-    #print os.path.join(root, dirs, files)
-    print "root: " + root
-    print dirs
-    print files
-    for file in files:
+    for file in [fil for fil in files if re.search('.*.nc$', fil) is not None]:
         curr_model = [model for model in MODELS if re.search(model, file + "$") is not None][0]
         curr_model_class = re.sub("-", "_", curr_model)
-        all_vars.append(getattr(vars()['Model'], curr_model_class)())
-        pdb.set_trace()
+        all_vars.append(getattr(vars()['Model'], curr_model_class)(file))
+    pdb.set_trace()
+#        if len(all_vars) == 6858:
+#            pdb.set_trace()
