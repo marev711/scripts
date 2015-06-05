@@ -61,14 +61,15 @@ for root, dirs, files in os.walk(args.rootdir):
         models_by_key.setdefault(model_key, []).append(file)
 
 # Primary sort on MIP, secondary sort on variable
-#mip_order = ["Amon", "day", "3hr", "6hrPlev", "Lmon", "OImon", "Omon", "Oyr"]
-#sorted_keys = sorted(uniq_keys, key=lambda x: (mip_order.index(x.split("-", 2)[1]), x.split("-", 2)[0]))
+mip_order = ["Amon", "day", "3hr", "6hrPlev", "Lmon", "OImon", "Omon", "Oyr"]
+sorted_keys = sorted(uniq_keys, key=lambda x: (mip_order.index(x.split("-", 2)[1]), x.split("-", 2)[0]))
 
-sorted_keys = sorted(uniq_keys, key=lambda x: (x.split("-", 2)[1], x.split("-", 2)[0]))
+#sorted_keys = sorted(uniq_keys, key=lambda x: (x.split("-", 2)[1], x.split("-", 2)[0]))
 
 regex_key = re.compile("(.*)-(.*)")
 headers = [x for x in itertools.product(MODELS, all_exps)]
 header_str = ", " + ", ".join([x[0] + " (" + x[1] + ")" for x in headers])
+headers_len = len(headers)
 
 output_csv = "test.csv"
 fcsv = open(output_csv, "w")
@@ -76,27 +77,60 @@ fcsv.write(header_str)
 fcsv.write("\n")
 
 
+# Write the main table
 for key in sorted_keys:
     mip = regex_key.search(key).group(2)
     var = regex_key.search(key).group(1)
 
-    headers_len = len(headers)
     for idx, header in enumerate([x[0] + "-" + x[1] for x in headers], start=1):
+        request_key = "-".join([var, mip, header])
+
         if idx == 1:
             fcsv.write(mip + ", ")
-        request_key = "-".join([var, mip, header])
+
         if request_key in models_by_key.keys():
             fcsv.write(var)
+
         if idx < headers_len:
             fcsv.write(", ")
         else:
             fcsv.write("\n")
-        
-#    for model in MODELS:
-        
+fcsv.close()
 
 
+output_yrs = "test.yrs"
+fyrs = open(output_yrs, "w")
+fyrs.write(header_str)
+fyrs.write("\n")
 
-model = "HadGEM3-A"
-#for key in uniq_keys:
+# Write table with years
+regex_yrs = re.compile("([0-9]{4})[0-9]*-([0-9]{4})[0-9]*.*.nc")
+all_mips = uniq([regex_key.search(m).group(2) for m in sorted_keys])
 
+for mip in all_mips:
+
+    for idx, header in enumerate([x[0] + "-" + x[1] for x in headers], start=1):
+        request_key = "-".join([mip, header])
+
+        var_key = [varkey for varkey in models_by_key.keys() if re.search(request_key, varkey) is not None]
+        if len(var_key) > 0:
+            all_files = [models_by_key[f] for f in var_key]
+            files = [item for sublist in all_files for item in sublist]
+            all_yrs = [regex_yrs.search(x).group(1,2) for x in files]
+            min_yrs = min([x[0] for x in all_yrs])
+            max_yrs = max([x[1] for x in all_yrs])
+
+        if idx == 1:
+            fyrs.write(mip + ", ")
+
+        #pdb.set_trace()
+        if len(var_key) > 0:
+            yrs_str = min_yrs + "-" + max_yrs
+            fyrs.write(yrs_str)
+
+        if idx < headers_len:
+            fyrs.write(", ")
+        else:
+            fyrs.write("\n")
+
+fyrs.close()
