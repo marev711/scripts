@@ -27,28 +27,48 @@ parser.add_argument("-r", "--rootdir", type=str, help="The root path to scan for
 parser.add_argument("-v", "--variable_file", type=str, help="The file with expected variables and their MIP, formatted as rows with: <VAR>  <MIP>")
 args = parser.parse_args()
 
-all_vars = []
 regex_ncfile = re.compile('.*.nc$')
 regex_sftlf = re.compile('^sftlf_.*')
+
+all_vars = []
+uniq_keys = []
+models_by_key = {}
 
 for root, dirs, files in os.walk(args.rootdir):
     if len(dirs) > 0:
         continue
-        continue
-    for file in [fil for fil in files 
+    # Skip non-netCDF files and sftlf (lsm) file
+    for file in [fil for fil in files
                    if regex_ncfile.search(fil) is not None
-                 and 
+                 and
                    regex_sftlf.search(fil) is None]:
         curr_model = [model for model in MODELS if re.search(model, file + "$") is not None][0]
         curr_model_class = re.sub("-", "_", curr_model)
-        all_vars.append(getattr(vars()['Model'], curr_model_class)(file))
-#        if len(all_vars) == 6858:
-#            pdb.set_trace()
 
-uniq_keys = []
-for model in MODELS:
-    curr_model_keys = ["-".join([m.var, m.mip, m.exp]) for m in all_vars if m.model_name == model]
-    uniq_keys = uniq(uniq_keys + curr_model_keys)
+        # Initiate and append correct model class for each file
+        m = getattr(vars()['Model'], curr_model_class)(file)
+        all_vars.append(m)
+
+        # Save new (uniqe variable-mip-experiment keys)
+        curr_model_key = "-".join([m.var, m.mip, m.exp])
+        uniq_keys = uniq(uniq_keys + [curr_model_key])
+
+        # Save model-key
+        model_key = curr_model_key + "-" + curr_model
+        models_by_key.setdefault(model_key, []).append(file)
+
+# Primary sort on experiment
+sorted(uniq_keys, key=lambda x: x.split("-", 2)[2])
+
+# Secondary sort on MIP
+sorted(uniq_keys, key=lambda x: x.split("-", 2)[1])
+
+# Tertinary sort on variable
+sorted(uniq_keys, key=lambda x: x.split("-", 2)[0])
 
 pdb.set_trace()
-    
+
+print uniq_keys[0]
+model = "HadGEM3-A"
+#for key in uniq_keys:
+
