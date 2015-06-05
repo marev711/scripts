@@ -8,6 +8,10 @@ class Model(object):
     def __init__(self, model_name, file):
         self.model_name = model_name
         self.file = file
+        var, mip, name, exp, ens, yrs = self.get_snippets()
+        self.var = var
+        self.mip = mip
+        self.exp = exp
 
     def get_snippets(self):
         regex = re.compile(".nc$")
@@ -26,10 +30,15 @@ class MPI_workaround(Model):
         super(MPI_workaround, self).__init__(model_name, file)
 
     def get_snippets(self):
-        regex = re.compile("(.*)(" + self.model_name + ")(.*).nc")
+        regex = re.compile("(.*)_(" + self.model_name + ")_(.*).nc")
         var, mip = regex.search(self.file).group(1).split("_")
         experiment, years = regex.search(self.file).group(3).split("_")
-        return var, mip, self.model_name, experiment, years
+
+        # Fix non-CMIP5 entries
+        mip = re.sub("A3hr", "3hr", mip)
+        mip = re.sub("L3hr", "3hr", mip)
+        mip = re.sub("Aday", "day", mip)
+        return var, mip, self.model_name, experiment, None, years
 
 class MPIESM_1_1(MPI_workaround):
     def __init__(self, file):
