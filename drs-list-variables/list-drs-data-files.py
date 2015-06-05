@@ -76,17 +76,27 @@ fcsv = open(output_csv, "w")
 fcsv.write(header_str)
 fcsv.write("\n")
 
+regex_yrs = re.compile("([0-9]{4})[0-9]*-([0-9]{4})[0-9]*.*.nc")
 
 # Write the main table
 for key in sorted_keys:
     mip = regex_key.search(key).group(2)
     var = regex_key.search(key).group(1)
 
+    # Special loop for intersection years
+    request_keys = ["-".join([var, mip, header[0], header[1]]) for header in headers]
+    all_files = [models_by_key[f] for f in request_keys if f in models_by_key.keys()]
+#    pdb.set_trace()
+    min_yrs = [min([regex_yrs.search(x).group(1) for x in l]) for l in all_files]
+    max_yrs = [max([regex_yrs.search(x).group(2) for x in l]) for l in all_files]
+    min_all = max(min_yrs)
+    max_all = min(max_yrs)
+
     for idx, header in enumerate([x[0] + "-" + x[1] for x in headers], start=1):
         request_key = "-".join([var, mip, header])
 
         if idx == 1:
-            fcsv.write(mip + ", ")
+            fcsv.write(mip + " (" + min_all + "-" + max_all + "), ")
 
         if request_key in models_by_key.keys():
             fcsv.write(var)
@@ -104,7 +114,6 @@ fyrs.write(header_str)
 fyrs.write("\n")
 
 # Write table with years
-regex_yrs = re.compile("([0-9]{4})[0-9]*-([0-9]{4})[0-9]*.*.nc")
 all_mips = uniq([regex_key.search(m).group(2) for m in sorted_keys])
 
 for mip in all_mips:
