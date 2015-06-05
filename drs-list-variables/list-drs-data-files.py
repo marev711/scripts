@@ -3,6 +3,7 @@
 import argparse
 import Model
 import os
+import itertools
 import pdb
 import re
 
@@ -31,6 +32,7 @@ regex_ncfile = re.compile('.*.nc$')
 regex_sftlf = re.compile('^sftlf_.*')
 
 all_vars = []
+all_exps = []
 uniq_keys = []
 models_by_key = {}
 
@@ -50,17 +52,44 @@ for root, dirs, files in os.walk(args.rootdir):
         all_vars.append(m)
 
         # Save new (uniqe variable-mip-experiment keys)
-        curr_model_key = "-".join([m.var, m.mip, m.exp])
-        uniq_keys = uniq(uniq_keys + [curr_model_key])
+        curr_model_var_mip = "-".join([m.var, m.mip])
+        uniq_keys = uniq(uniq_keys + [curr_model_var_mip])
+        all_exps = uniq(all_exps + [m.exp])
 
         # Save model-key
-        model_key = curr_model_key + "-" + curr_model
+        model_key = "-".join([m.var, m.mip, curr_model, m.exp])
         models_by_key.setdefault(model_key, []).append(file)
 
 # Primary sort on experiment, secondary sort on MIP, Tertinary sort on variable
-sort1 = sorted(uniq_keys, key=lambda x: (x.split("-", 2)[2], x.split("-", 2)[1], x.split("-", 2)[0]))
+sorted_keys = sorted(uniq_keys, key=lambda x: (x.split("-", 2)[1], x.split("-", 2)[0]))
 
-pdb.set_trace()
+regex_key = re.compile("(.*)-(.*)")
+headers = [x for x in itertools.product(MODELS, all_exps)]
+header_str = ", ".join([x[0] + " (" + x[1] + ")" for x in headers])
+
+output_csv = "test.csv"
+fcsv = open(output_csv, "w")
+fcsv.write(header_str)
+fcsv.write("\n")
+
+
+for key in sorted_keys:
+    mip = regex_key.search(key).group(2)
+    var = regex_key.search(key).group(1)
+
+    headers_len = len(headers)
+    for idx, header in enumerate([x[0] + "-" + x[1] for x in headers], start=1):
+        request_key = "-".join([var, mip, header])
+        if request_key in models_by_key.keys():
+            fcsv.write(var)
+        if idx < headers_len:
+            fcsv.write(", ")
+        else:
+            fcsv.write("\n")
+        
+#    for model in MODELS:
+        
+
 
 
 model = "HadGEM3-A"
