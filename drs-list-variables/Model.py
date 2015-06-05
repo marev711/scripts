@@ -72,3 +72,8 @@ class CNRM_AM_PRE6(Model):
     def __init__(self, file):
         super(CNRM_AM_PRE6, self).__init__("CNRM-AM-PRE6", file)
 
+    def get_snippets(self):
+        var, mip, self.model_name, experiment, ens, years = super(CNRM_AM_PRE6, self).get_snippets()
+        # Harmonize CMIP5 entries
+        mip = re.sub("cf3hr", "3hr", mip)
+        return var, mip, self.model_name, experiment, ens, years
