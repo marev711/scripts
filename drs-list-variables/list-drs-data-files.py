@@ -57,18 +57,12 @@ for root, dirs, files in os.walk(args.rootdir):
         model_key = curr_model_key + "-" + curr_model
         models_by_key.setdefault(model_key, []).append(file)
 
-# Primary sort on experiment
-sorted(uniq_keys, key=lambda x: x.split("-", 2)[2])
-
-# Secondary sort on MIP
-sorted(uniq_keys, key=lambda x: x.split("-", 2)[1])
-
-# Tertinary sort on variable
-sorted(uniq_keys, key=lambda x: x.split("-", 2)[0])
+# Primary sort on experiment, secondary sort on MIP, Tertinary sort on variable
+sort1 = sorted(uniq_keys, key=lambda x: (x.split("-", 2)[2], x.split("-", 2)[1], x.split("-", 2)[0]))
 
 pdb.set_trace()
 
-print uniq_keys[0]
+
 model = "HadGEM3-A"
 #for key in uniq_keys:
 
