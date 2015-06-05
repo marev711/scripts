@@ -44,7 +44,7 @@ for root, dirs, files in os.walk(args.rootdir):
                    if regex_ncfile.search(fil) is not None
                  and
                    regex_sftlf.search(fil) is None]:
-        curr_model = [model for model in MODELS if re.search(model, file + "$") is not None][0]
+        curr_model = [model for model in MODELS if re.search("_" + model + "_", file) is not None][0]
         curr_model_class = re.sub("-", "_", curr_model)
 
         # Initiate and append correct model class for each file
@@ -60,12 +60,15 @@ for root, dirs, files in os.walk(args.rootdir):
         model_key = "-".join([m.var, m.mip, curr_model, m.exp])
         models_by_key.setdefault(model_key, []).append(file)
 
-# Primary sort on experiment, secondary sort on MIP, Tertinary sort on variable
+# Primary sort on MIP, secondary sort on variable
+#mip_order = ["Amon", "day", "3hr", "6hrPlev", "Lmon", "OImon", "Omon", "Oyr"]
+#sorted_keys = sorted(uniq_keys, key=lambda x: (mip_order.index(x.split("-", 2)[1]), x.split("-", 2)[0]))
+
 sorted_keys = sorted(uniq_keys, key=lambda x: (x.split("-", 2)[1], x.split("-", 2)[0]))
 
 regex_key = re.compile("(.*)-(.*)")
 headers = [x for x in itertools.product(MODELS, all_exps)]
-header_str = ", ".join([x[0] + " (" + x[1] + ")" for x in headers])
+header_str = ", " + ", ".join([x[0] + " (" + x[1] + ")" for x in headers])
 
 output_csv = "test.csv"
 fcsv = open(output_csv, "w")
@@ -79,6 +82,8 @@ for key in sorted_keys:
 
     headers_len = len(headers)
     for idx, header in enumerate([x[0] + "-" + x[1] for x in headers], start=1):
+        if idx == 1:
+            fcsv.write(mip + ", ")
         request_key = "-".join([var, mip, header])
         if request_key in models_by_key.keys():
             fcsv.write(var)
