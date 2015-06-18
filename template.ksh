@@ -45,6 +45,22 @@ function log {
  echo "[ $(date -u '+%Y-%m-%d  %H:%M') ]: " $*
 }
 
+info()
+{
+    log "*II* $*"
+}
+
+warning()
+{
+    log "*WW* $*"
+}
+
+error()
+{
+    log "*EE* $*" 1>&2
+    exit 1
+}
+
 function usage_and_exit {
   exit_code=${1:-0}
   usage
