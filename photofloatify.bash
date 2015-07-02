@@ -7,7 +7,7 @@
 # Purpose: Run PhotoFloat on target folder and (optionally) 
 #          export on Publisher
 #
-# Usage: .//home/sm_maeva/scripts/photofloatify.bash
+# Usage: ./photofloatify.bash
 #
 # Revision history: 2015-07-01  --  Script created, Martin Evaldsson, Rossby Centre
 #
@@ -16,11 +16,14 @@
 ########################
 
 program=$0
-photofloat_src=/nobackup/rossby17/sm_maeva/software/PhotoFloat
-photofloat_workdir=/nobackup/rossby17/sm_maeva/software/PhotoFloat-workdir-copy
+source ${HOME}/scripts/photofloatify.cfg
 
 function usage {
  echo "Usage: photofloatify.bash [-o <output-folder>] [-n] <input-folder> 
+
+ -o <output-folder>   skip default precompiled photofloat dir and create a new from scratch
+ -n skip publisher (default is set in cfg file)
+ <input-folder> folder with figures
 " 1>&2 
 }
 
@@ -55,7 +58,6 @@ if [ ! $# -eq 1 ]; then
   usage_and_exit 1
 fi
 
-EXPORT_TO_PUBLISHER="True"
 OUTPUT_FOLDER="False"
 
 while getopts "o:nh" opt
@@ -107,4 +109,8 @@ rsync -vaz ${input_folder}/ ${OUTPUT_FOLDER}/web/albums/
 cd ${OUTPUT_FOLDER}/scanner
 
 ./main.py ../web/albums ../web/cache
-pcmd ${OUTPUT_FOLDER}/web tmp_rossby
+
+if [ ${EXPORT_TO_PUBLISHER} == "True"  ]
+then
+    pcmd ${OUTPUT_FOLDER}/web tmp_rossby
+fi
