@@ -16,6 +16,12 @@
 ########################
 
 program=$0
+
+
+# source variables
+# * photofloat_src
+# * photofloat_workdir
+# * EXPORT_TO_PUBLISHER
 source ${HOME}/scripts/photofloatify.cfg
 
 function usage {
