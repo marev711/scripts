@@ -21,7 +21,8 @@ MODELS = ["EC-EARTH3",
           "HadGEM3-A-N216",
           "HadGEM3-GC2-N216",
           "HadGEM3-GC2-N96",
-          "CNRM-AM-PRE6"]
+          "CNRM-AM-PRE6",
+          "IPSL-CM5C-MR"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--rootdir", type=str, help="The root path to scan for cmorized data sets")

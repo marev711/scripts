@@ -59,14 +59,9 @@ function usage_and_exit {
   exit $exit_code
 }
 
-if [ ! $# -eq 1 ]; then
-  echo "Wrong number of arguments" 2>&1
-  usage_and_exit 1
-fi
-
 OUTPUT_FOLDER="False"
 
-while getopts "o:nh" opt
+while getopts ":onh" opt
 do
   case $opt in 
      n)
@@ -95,21 +90,10 @@ else
     fi
 fi
 
-
-
-if [ ${OUTPUT_FOLDER} == "False"  ]
-then
-    git clone file://${photofloat_src} ${OUTPUT_FOLDER}
-    mkdir -p ${OUTPUT_FOLDER}/web/albums
-    mkdir -p ${OUTPUT_FOLDER}/web/cache
-    (cd ${OUTPUT_FOLDER}/web; make > /dev/null )
-else
-    rm -rf ${OUTPUT_FOLDER}/web/albums
-    rm -rf ${OUTPUT_FOLDER}/web/cache
-
-    mkdir -p ${OUTPUT_FOLDER}/web/albums
-    mkdir -p ${OUTPUT_FOLDER}/web/cache
-fi
+git clone file://${photofloat_src} ${OUTPUT_FOLDER}
+mkdir -p ${OUTPUT_FOLDER}/web/albums
+mkdir -p ${OUTPUT_FOLDER}/web/cache
+(cd ${OUTPUT_FOLDER}/web; make > /dev/null )
 
 rsync -vaz ${input_folder}/ ${OUTPUT_FOLDER}/web/albums/
 cd ${OUTPUT_FOLDER}/scanner

@@ -77,3 +77,8 @@ class CNRM_AM_PRE6(Model):
         # Harmonize CMIP5 entries
         mip = re.sub("cf3hr", "3hr", mip)
         return var, mip, self.model_name, experiment, ens, years
+
+class IPSL_CM5C_MR(Model):
+    def __init__(self, file):
+        super(IPSL_CM5C_MR, self).__init__("IPSL-CM5C-MR", file)
+
