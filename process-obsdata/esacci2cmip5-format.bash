@@ -1,4 +1,4 @@
-#! /bin/bash -eux
+#! /bin/bash -eu
  
 #########################
 # 
@@ -21,7 +21,7 @@
 #
 ########################
 
-cmip_filename=clt_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv1.4_observation_r1i1p1_
+cmip_filename=clt_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv1.4_observation_r1i1p1
 
 function usage {
  echo "
