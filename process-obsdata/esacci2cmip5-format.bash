@@ -36,31 +36,15 @@ function usage {
 " 1>&2 
 }
 
-function log {
- echo "[ $(date -u '+%Y-%m-%d  %H:%M') ]: " $*
-}
-
-info()
-{
-    log "*II* $*"
-}
-
-warning()
-{
-    log "*WW* $*"
-}
-
-error()
-{
-    log "*EE* $*" 1>&2
-    exit 1
-}
-
 function usage_and_exit {
   exit_code=${1:-0}
   usage
   exit $exit_code
 }
+
+if [ $# -eq 0 ]; then
+  usage_and_exit 0
+fi
 
 
 while getopts "hi:o:" opt; do
@@ -76,6 +60,7 @@ while getopts "hi:o:" opt; do
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
+      usage_and_exit 1
       ;;
   esac
 done
@@ -90,14 +75,14 @@ cmip5_file=${output_directory}/${cmip_filename}_${first_date}-${last_date}.nc
 
 for line in ${all_input}
 do
-    # Extract cc_total and adjust units
+    # Extract cc_total and scale variable (fraction -> %)
     cdo mulc,100 -selvar,cc_total $line ${output_tmp}/$(basename ${line%*.nc})-clt.nc
 done
 
-# Concatenate to singel file
+# Concatenate to single file
 ncrcat $(ls -1 ${output_tmp}/* | tr '\n' ' ') ${output_tmp}/tmp1.nc
 
-# Change untis
+# Update unit attribute
 ncatted -a units,cc_total,c,c,"%" ${output_tmp}/tmp1.nc
 
 # Rename variable
