@@ -22,6 +22,7 @@
 ########################
 
 cmip_filename=clt_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv1.4_observation_r1i1p1
+# data folder as of Nov 2015: /nobackup/rossby17/rossby/joint_exp/esacci/Clouds/phase2/
 
 function usage {
  echo "
