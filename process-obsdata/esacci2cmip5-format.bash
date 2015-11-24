@@ -4,7 +4,7 @@
 # 
 # Name: esacci2cmip5-format.bash
 #
-# Purpose: Rewrite ESA-CCI cc_total files to CMIP5:ish format
+# Purpose: Rewrite ESA-CCI variable files to CMIP5:ish format
 #
 # Usage: ./esacci2cmip5-format.bash [-h] -i input-directory -o output-directory
 #
@@ -12,7 +12,7 @@
 #    -i   input directory
 #    -o   output directory
 #
-#    Extracts, rename and concateante variable 'cc_total' from raw ESA-CCI files
+#    Extracts, rename and concateante variables from ESA-CCI files
 #    into a sinlge CMIP5:ish file.
 #
 # Revision history: 2015-11-20  --  Script created, Martin Evaldsson, Rossby Centre
@@ -21,7 +21,9 @@
 #
 ########################
 
-cmip_filename=clt_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv1.4_observation_r1i1p1
+cmip_variable=clwvi  # clivi, clt
+cci_variable=lwp     # iwp  , cc_total
+cmip_filename=${cmip_variable}_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv1.4_observation_r1i1p1
 # data folder as of Nov 2015: /nobackup/rossby17/rossby/joint_exp/esacci/Clouds/phase2/
 
 function usage {
@@ -32,7 +34,7 @@ function usage {
     -i   input directory
     -o   output directory
 
-    Extracts, rename and concateante variable 'cc_total' from raw ESA-CCI files
+    Extracts, rename and concateante variables from ESA-CCI files
     into a sinlge CMIP5:ish file.
 " 1>&2 
 }
@@ -76,15 +78,28 @@ cmip5_file=${output_directory}/${cmip_filename}_${first_date}-${last_date}.nc
 
 for line in ${all_input}
 do
-    # Extract cc_total and scale variable (fraction -> %)
-    cdo mulc,100 -selvar,cc_total $line ${output_tmp}/$(basename ${line%*.nc})-clt.nc
+    case ${cmip_variable} in
+        cc_total)
+            # Extract cci_variable and scale variable (fraction -> %)
+            cdo mulc,100 -selvar,${cci_variable} $line ${output_tmp}/$(basename ${line%*.nc})-${cmip_variable}.nc
+            ;;
+        clwvi)
+            # Extract lwp
+            cdo selvar,${cci_variable} $line ${output_tmp}/$(basename ${line%*.nc})-${cmip_variable}.nc
+            ;;
+        clivi)
+            # Extract lwp
+            cdo selvar,${cci_variable} $line ${output_tmp}/$(basename ${line%*.nc})-${cmip_variable}.nc
+            ;;
+    esac
+
 done
 
 # Concatenate to single file
 ncrcat $(ls -1 ${output_tmp}/* | tr '\n' ' ') ${output_tmp}/tmp1.nc
 
 # Update unit attribute
-ncatted -a units,cc_total,c,c,"%" ${output_tmp}/tmp1.nc
+ncatted -a units,${cci_variable},c,c,"%" ${output_tmp}/tmp1.nc
 
 # Rename variable
-ncrename -v cc_total,clt ${output_tmp}/tmp1.nc ${cmip5_file}
+ncrename -v ${cci_variable},${cmip_variable} ${output_tmp}/tmp1.nc ${cmip5_file}
