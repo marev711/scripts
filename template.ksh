@@ -52,7 +52,7 @@ info()
 
 warning()
 {
-    log "*WW* $*"
+    log "*WW* $*" 1>&2
 }
 
 error()
