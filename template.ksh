@@ -52,7 +52,7 @@ info()
 
 warning()
 {
-    log "*WW* $*"
+    log "*WW* $*" 1>&2
 }
 
 error()
@@ -74,25 +74,32 @@ echo "This script, $(basename $0), is run by $(whoami) on server $(hostname) fro
 echo "==================================="
 }
 
+# Default behaviour without any arguments
+if [ $# -eq 0 ]; then
+  usage_and_exit 0
+fi
+
+while getopts "ha:b:" opt; do
+  case $opt in
+    h)
+      usage_and_exit 0
+      ;;
+    a)
+        aopt=$OPTARG
+      ;;
+    b)
+        bopt=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      usage_and_exit 1
+      ;;
+  esac
+done
+
 if [ ! $# -eq 1 ]; then
   echo "Wrong number of arguments" 2>&1
   usage_and_exit 1
 fi
 
-while (( "$#" )); do 
-  case $1 in 
-     firstChoice)
-        ;;
-     --help|--hel|--he|--h|-help|-hel|-he|-h)
-        usage_and_exit
-        ;;
-      --)
-        set --
-        ;;
-      *)
-        printf '\n%s\n\n' "Unknown flag $1" 2>&1
-        usage_and_exit 1
-        ;;
-  esac  
-done
 .

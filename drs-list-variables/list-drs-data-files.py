@@ -21,7 +21,8 @@ MODELS = ["EC-EARTH3",
           "HadGEM3-A-N216",
           "HadGEM3-GC2-N216",
           "HadGEM3-GC2-N96",
-          "CNRM-AM-PRE6"]
+          "CNRM-AM-PRE6",
+          "IPSL-CM5C-MR"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--rootdir", type=str, help="The root path to scan for cmorized data sets")
@@ -86,7 +87,6 @@ for key in sorted_keys:
     # Special loop for intersection years
     request_keys = ["-".join([var, mip, header[0], header[1]]) for header in headers]
     all_files = [models_by_key[f] for f in request_keys if f in models_by_key.keys()]
-#    pdb.set_trace()
     min_yrs = [min([regex_yrs.search(x).group(1) for x in l]) for l in all_files]
     max_yrs = [max([regex_yrs.search(x).group(2) for x in l]) for l in all_files]
     min_all = max(min_yrs)
@@ -113,6 +113,7 @@ fyrs = open(output_yrs, "w")
 fyrs.write(header_str)
 fyrs.write("\n")
 
+regex_yrs = re.compile("([0-9]{4})[0-9]*-([0-9]{4})[0-9]*.*.nc")
 # Write table with years
 all_mips = uniq([regex_key.search(m).group(2) for m in sorted_keys])
 
