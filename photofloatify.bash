@@ -25,11 +25,11 @@ program=$0
 source ${HOME}/scripts/photofloatify.cfg
 
 function usage {
- echo "Usage: photofloatify.bash [-o <output-folder>] [-n] <input-folder> 
+ echo "Usage: photofloatify.bash [-o <output-folder>] [-n] -i <input-folder> 
 
  -o <output-folder>   skip default precompiled photofloat dir and create a new from scratch
  -n skip publisher (default is set in cfg file)
- <input-folder> folder with figures
+ -i <input-folder> folder with figures
 " 1>&2 
 }
 
@@ -60,8 +60,9 @@ function usage_and_exit {
 }
 
 OUTPUT_FOLDER="False"
+INPUT_FOLDER="False"
 
-while getopts ":onh" opt
+while getopts ":o:ni:h" opt
 do
   case $opt in 
      n)
@@ -69,6 +70,9 @@ do
         ;;
      o)
         OUTPUT_FOLDER=$OPTARG
+        ;;
+     i)
+        INPUT_FOLDER=$OPTARG
         ;;
      h)
         usage_and_exit
@@ -79,7 +83,11 @@ do
         ;;
   esac  
 done
-input_folder=$1
+if [ ${INPUT_FOLDER} == "False"  ]
+then
+    error "Input folder not set"
+fi
+
 if [ ${OUTPUT_FOLDER} == "False"  ]
 then
     OUTPUT_FOLDER=${photofloat_workdir}
@@ -95,12 +103,12 @@ mkdir -p ${OUTPUT_FOLDER}/web/albums
 mkdir -p ${OUTPUT_FOLDER}/web/cache
 (cd ${OUTPUT_FOLDER}/web; make > /dev/null )
 
-rsync -vaz ${input_folder}/ ${OUTPUT_FOLDER}/web/albums/
+rsync -vaz ${INPUT_FOLDER}/ ${OUTPUT_FOLDER}/web/albums/
 cd ${OUTPUT_FOLDER}/scanner
 
 ./main.py ../web/albums ../web/cache
 
 if [ ${EXPORT_TO_PUBLISHER} == "True"  ]
 then
-    pcmd ${OUTPUT_FOLDER}/web tmp_rossby
+    pcmd $(readlink -f ../web) tmp_rossby
 fi

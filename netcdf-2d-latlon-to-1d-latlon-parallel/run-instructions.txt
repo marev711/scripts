@@ -1,0 +1,16 @@
+# How to use, 
+#  a) generate file 'all-input-files-fullpath.txt' with full paths to all files, one line per file
+#  b) set modulo to a number between 2-9
+#  c) follow the steps in 1-3
+#
+#  1 Round robin lines from 'all-input-files-fullpath.txt'
+#  2 Put each file into an ncl array, 
+#  3 prepend/append script to process each line in the array
+
+modulo=9
+for var in ua va ta tas pr rsds rlds rsut rsutcs rlut rlutsc;do find  /nobackup/rossby18/rossby/joint_exp/embrace/cmor-hr/ -iname "${var}_*";done > all-input-files-fullpath.txt
+tt=-1;while read line;do tt=$((tt+1));num=$(echo 0$((tt%modulo)));echo $line | sed -e 's/^/"/' -e 's/$/",\\/'  >> "hr"-${num}.txt;done < all-input-files-fullpath.txt
+for fil in $(ls hr-*);do sed -i '1iindata = (/\\' $fil; sed -i '$s/",\\/"\/\)/' $fil;done
+for fil in $(ls hr-*);do num=$(echo $fil | sed 's/.*\([0-9][0-9]\).*/\1/');cat netcdf-2d-latlon-to-1d-latlon-ece-header.ncl >> hr-${num}.ncl;cat $fil >> hr-${num}.ncl;cat netcdf-2d-latlon-to-1d-latlon-ece-footer.ncl >> hr-${num}.ncl;done
+rm -f hr-*txt;chmod 755 hr-*ncl
+for num in $(seq 0 $((modulo - 1)));do num=0$num;sbatch -n 1 -t 10 -A rossby_fat --mem=20000 ./hr-${num}.ncl;done
