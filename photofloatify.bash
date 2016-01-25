@@ -121,7 +121,7 @@ rsync -vaz ${INPUT_FOLDER}/ ${OUTPUT_FOLDER}/web/albums/
 rsync -vaz ${INPUT_FOLDER}/ ${tarball_folder}/
 (
 cd $(dirname $tarball_folder)
-tar cf ${tarball_file} ${tarball_folder}
+tar cf ${tarball_file} ${TARBALL_NAME}
 rm -rf ${tarball_folder}
 )
 

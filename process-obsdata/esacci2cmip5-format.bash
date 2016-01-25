@@ -79,7 +79,7 @@ cmip5_file=${output_directory}/${cmip_filename}_${first_date}-${last_date}.nc
 for line in ${all_input}
 do
     case ${cmip_variable} in
-        cc_total)
+        clt)
             # Extract cci_variable and scale variable (fraction -> %)
             cdo mulc,100 -selvar,${cci_variable} $line ${output_tmp}/$(basename ${line%*.nc})-${cmip_variable}.nc
             ;;
@@ -94,12 +94,24 @@ do
     esac
 
 done
-
 # Concatenate to single file
 ncrcat $(ls -1 ${output_tmp}/* | tr '\n' ' ') ${output_tmp}/tmp1.nc
 
 # Update unit attribute
-ncatted -a units,${cci_variable},c,c,"%" ${output_tmp}/tmp1.nc
+case ${cmip_variable} in
+    clt)
+        ncatted -a units,${cci_variable},c,c,"%" ${output_tmp}/tmp1.nc
+        ;;
+    clwvi)
+        # Extract lwp
+        cdo selvar,${cci_variable} $line ${output_tmp}/$(basename ${line%*.nc})-${cmip_variable}.nc
+        ;;
+    clivi)
+        # Extract lwp
+        cdo selvar,${cci_variable} $line ${output_tmp}/$(basename ${line%*.nc})-${cmip_variable}.nc
+        ;;
+esac
+
 
 # Rename variable
 ncrename -v ${cci_variable},${cmip_variable} ${output_tmp}/tmp1.nc ${cmip5_file}
