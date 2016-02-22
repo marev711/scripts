@@ -83,8 +83,8 @@ do f_idx = 0, dimsizes(files_in) - 1
         else
             fout@$global_attnames(i)$ = fin@$global_attnames(i)$
         end if
+    end do
     delete(global_attnames)
     delete(fvarnames)
-    end do
 end do
 end
