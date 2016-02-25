@@ -8,7 +8,7 @@
 #  3 prepend/append script to process each line in the array
 
 modulo=9
-for var in ua va ta tas pr rsds rlds rsut rsutcs rlut rlutsc;do find  /nobackup/rossby18/rossby/joint_exp/embrace/cmor-hr/ -iname "${var}_*";done > all-input-files-fullpath.txt
+for var in ua va ta tas ts psl clt pr rsds rlds rsut rsutcs rlut rlutcs;do find  /nobackup/rossby18/rossby/joint_exp/embrace/cmor-hr/ -iname "${var}_*";done > all-input-files-fullpath.txt
 tt=-1;while read line;do tt=$((tt+1));num=$(echo 0$((tt%modulo)));echo $line | sed -e 's/^/"/' -e 's/$/",\\/'  >> "hr"-${num}.txt;done < all-input-files-fullpath.txt
 for fil in $(ls hr-*);do sed -i '1iindata = (/\\' $fil; sed -i '$s/",\\/"\/\)/' $fil;done
 for fil in $(ls hr-*);do num=$(echo $fil | sed 's/.*\([0-9][0-9]\).*/\1/');cat netcdf-2d-latlon-to-1d-latlon-ece-header.ncl >> hr-${num}.ncl;cat $fil >> hr-${num}.ncl;cat netcdf-2d-latlon-to-1d-latlon-ece-footer.ncl >> hr-${num}.ncl;done

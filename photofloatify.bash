@@ -1,10 +1,10 @@
-#! /bin/bash -xeu
- 
+#! /bin/bash -eu
+
 #########################
-# 
-# Name: 
 #
-# Purpose: Run PhotoFloat on target folder and (optionally) 
+# Name:
+#
+# Purpose: Run PhotoFloat on target folder and (optionally)
 #          export on Publisher
 #
 # Usage: ./photofloatify.bash
@@ -27,11 +27,10 @@ source ${HOME}/scripts/photofloatify.cfg
 function usage {
  echo "Usage: photofloatify.bash [-o <output-folder>] [-n] -i <input-folder> -t <tarball-name>
 
- -o <output-folder>   skip default precompiled photofloat dir and create a new from scratch
  -n skip publisher (default is set in cfg file)
  -i <input-folder> folder with figures
  -t <tarball-name> name to use for tarball download file
-" 1>&2 
+" 1>&2
 }
 
 function log {
@@ -64,14 +63,11 @@ OUTPUT_FOLDER="False"
 INPUT_FOLDER="False"
 TARBALL_NAME="False"
 
-while getopts ":o:ni:t:h" opt
+while getopts ":ni:t:h" opt
 do
-  case $opt in 
+  case $opt in
      n)
         EXPORT_TO_PUBLISHER="False"
-        ;;
-     o)
-        OUTPUT_FOLDER=$OPTARG
         ;;
      i)
         INPUT_FOLDER=$OPTARG
@@ -86,7 +82,7 @@ do
         printf '\n%s\n\n' "Unknown option $1" 1>&2
         usage_and_exit 1
         ;;
-  esac  
+  esac
 done
 
 if [ ${INPUT_FOLDER} == "False"  ]
@@ -95,12 +91,26 @@ then
 fi
 
 if [ ${OUTPUT_FOLDER} == "False"  ]
+old_outputs=""
 then
     OUTPUT_FOLDER=${photofloat_workdir}
-else
     if [ -d ${OUTPUT_FOLDER} ]
     then
-        error "Output folder ${OUTPUT_FOLDER} already exists"
+        for num in 2 3 4 5 6 7 8 9
+        do
+            OUTPUT_FOLDER=$(dirname ${photofloat_workdir})"/"$(basename ${photofloat_workdir})$num
+            if [ -d ${OUTPUT_FOLDER} ]
+            then
+                warning "Output folder ${OUTPUT_FOLDER} already exists"
+                old_outputs=${old_outputs},${OUTPUT_FOLDER}
+            else
+                break
+            fi
+        done
+        if [ -d ${OUTPUT_FOLDER} ]
+        then
+            error "Output folder ${OUTPUT_FOLDER} already exists"
+        fi
     fi
 fi
 
@@ -109,32 +119,16 @@ then
     TARBALL_NAME=$(basename ${INPUT_FOLDER})
 fi
 
-tarball_folder=${OUTPUT_FOLDER}/web/${TARBALL_NAME}
-tarball_file=${TARBALL_NAME}.tar
-
 git clone file://${photofloat_src} ${OUTPUT_FOLDER}
 mkdir -p ${OUTPUT_FOLDER}/web/albums
 mkdir -p ${OUTPUT_FOLDER}/web/cache
-(cd ${OUTPUT_FOLDER}/web; make > /dev/null )
 
-rsync -vaz ${INPUT_FOLDER}/ ${OUTPUT_FOLDER}/web/albums/
-rsync -vaz ${INPUT_FOLDER}/ ${tarball_folder}/
-(
-cd $(dirname $tarball_folder)
-tar cf ${tarball_file} ${TARBALL_NAME}
-rm -rf ${tarball_folder}
-)
+sbatch -n 1 -t 45 -J ${OUTPUT_FOLDER} ~/scripts/photofloatify_PE.bash -i ${INPUT_FOLDER} -o ${OUTPUT_FOLDER} -t ${TARBALL_NAME} -e ${EXPORT_TO_PUBLISHER}
+echo "======================="
+echo "Obselete work dirs"
+echo $old_outputs | sed 's/,/\n/g'
+echo "======================="
 
-cd ${OUTPUT_FOLDER}/scanner
+echo "Wait for ${OUTPUT_FOLDER} to finish, then run,
 
-./main.py ../web/albums ../web/cache
-(
-cd ../web
-sed -i "/<div id=\"subalbums\"><\/div>/a \<div\>\<h3\>Download all: \<a href=\""${tarball_file}\"">"${tarball_file}"\<\/a\>\<\/h3\>\<\/div\>" index.html
-rm -f *~
-)
-
-if [ ${EXPORT_TO_PUBLISHER} == "True"  ]
-then
-    pcmd $(readlink -f ../web) tmp_rossby
-fi
+  pcmd ${OUTPUT_FOLDER}/web tmp_rossby"
