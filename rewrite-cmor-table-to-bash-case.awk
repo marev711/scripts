@@ -41,7 +41,7 @@ BEGIN {
   newvar="none"
   no_ws=20
   ws=repeat(" ", no_ws, rep, i)
-  print "case"
+  print "case ${var_in[$var]} in"
 }
 
 {
