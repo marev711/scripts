@@ -1,0 +1,626 @@
+# ------ driving model info --------
+case ${run_in[$run]} in
+
+
+# --- EC-EARTH 2.3, T159, MISU, MHC1, historical, r2i1p1, (1850.01-2005.12) ---
+MHC1)        path_in='/nobackup/vagn2/cmip5/MHC1-SAVED/IFS/'
+             experiment_id='historical'
+             experiment='historical'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r2i1p1'
+             project_id='CMIP5'
+             parent_experiment='pre-industrial control'
+             parent_experiment_id='piControl'
+             realization=2 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, MHC1 (r2i1p1), historical, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- EC-EARTH 2.3, T159, MISU, MS41 (restarded from MHC1), rcp45, r2i1p1, (2006.01-2100.12) ---
+MS41)        path_in='/nobackup/vagn2/cmip5/MS41-SAVED/IFS/'
+             experiment_id='rcp45'
+             experiment='RCP4.5'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r2i1p1'
+             project_id='CMIP5'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=2 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, MS41 (r2i1p1), rcp45, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- EC-EARTH 2.3, T159, MISU, MS81 (restarded from MHC1), rcp85, r2i1p1, (2006.01-2100.12) ---
+MS81)        path_in='/nobackup/vagn2/cmip5/MS81-SAVED/IFS/'
+             experiment_id='rcp85'
+             experiment='RCP8.5'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r2i1p1'
+             project_id='CMIP5'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=2 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, MS81 (r2i1p1), rcp85, converted to netcdf at Rossby Centre, SMHI';;
+
+
+# --- EC-EARTH 2.3, T159, MISU, MHC2, historical, r9i1p1, (1850.01-2005.12) ---
+MHC2)        path_in='/nobackup/vagn2/cmip5/MHC2-SAVED/IFS/'
+             experiment_id='historical'
+             experiment='historical'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r9i1p1'
+             project_id='CMIP5'
+             parent_experiment='pre-industrial control'
+             parent_experiment_id='piControl'
+             realization=9 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, MHC2 (r9i1p1), historical, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- EC-EARTH 2.3, T159, MISU, MS42 (restarded from MHC2), rcp45, r9i1p1, (2006.01-2100.12) ---
+MS42)        path_in='/nobackup/vagn2/cmip5/MS42-SAVED/IFS/'
+             experiment_id='rcp45'
+             experiment='RCP4.5'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r9i1p1'
+             project_id='CMIP5'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=9 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, MS42 (r9i1p1), rcp45, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- EC-EARTH 2.3, T159, MISU, MS82 (restarded from MHC2), rcp85, r9i1p1, (2006.01-2100.12) ---
+MS82)        path_in='/nobackup/vagn2/cmip5/MS82-SAVED/IFS/'
+             experiment_id='rcp85'
+             experiment='RCP8.5'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r9i1p1'
+             project_id='CMIP5'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=9 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, MS82 (r9i1p1), rcp85, converted to netcdf at Rossby Centre, SMHI';;
+
+
+# --- EC-EARTH 2.3, T159, SMHI, SHC1, historical, r12i1p1, (1850.01-2005.12) ---
+SHC1)        path_in='/nobackup/vagn2/cmip5/SHC1-SAVED/IFS/'
+             experiment_id='historical'
+             experiment='historical'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r12i1p1'
+             project_id='CMIP5'
+             parent_experiment='pre-industrial control'
+             parent_experiment_id='piControl'
+             realization=12 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, SHC1 (r12i1p1), historical, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- EC-EARTH 2.3, T159, SMHI, SS21 (restarded from SHC1), rcp26, r12i1p1, (2006.01-2100.12) ---
+SS21)        path_in='/nobackup/vagn2/cmip5/SS21-SAVED/IFS/'
+             experiment_id='rcp26'
+             experiment='RCP2.6'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r12i1p1'
+             project_id='CMIP5'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=12 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, SS21 (r12i1p1), rcp26, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- EC-EARTH 2.3, T159, SMHI, SS41 (restarded from SHC1), rcp45, r12i1p1, (2006.01-2100.12) ---
+SS41)        path_in='/nobackup/vagn2/cmip5/SS41-SAVED/IFS/'
+             experiment_id='rcp45'
+             experiment='RCP4.5'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r12i1p1'
+             project_id='CMIP5'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=12 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, SS41 (r12i1p1), rcp45, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- EC-EARTH 2.3, T159, SMHI, SS81 (restarded from SHC1), rcp85, r12i1p1, (2006.01-2100.12) ---
+SS81)        path_in='/nobackup/vagn2/cmip5/SS81-SAVED/IFS/'
+             experiment_id='rcp85'
+             experiment='RCP8.5'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r12i1p1'
+             project_id='CMIP5'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=12 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, SS81 (r12i1p1), rcp85, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- MERRA --- 
+MERRA)               gcm_name='MERRA'
+                     experiment_id='reanalysis'
+                     gcm_version_id='r1i1p1';;
+
+# --- MERRA2 --- 
+MERRA2)               gcm_name='MERRA2'
+                     experiment_id='reanalysis'
+                     gcm_version_id='r1i1p1';;
+
+# --- ERAINT --- 
+ERAINT)              gcm_name='ERAINT'
+                     experiment_id='reanalysis'
+                     gcm_version_id='r1i1p1';;
+
+
+# --- CanESM2, CCCMA, historical, r1i1p1 --- 
+CanESM2-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/CanESM2/r1i1p1/historical/
+                     gcm_name='CanESM2'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- CanESM2, CCCMA, rcp45, r1i1p1 --- 
+CanESM2-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/CanESM2/r1i1p1/rcp45/
+                     gcm_name='CanESM2'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- CanESM2, CCCMA, rcp85, r1i1p1 --- 
+CanESM2-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/CanESM2/r1i1p1/rcp85/
+                     gcm_name='CanESM2'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+# --- CNRM-CM5, CNRM, historical, r1i1p1 --- 
+CNRM-CM5-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/CNRM-CM5/r1i1p1/historical/
+                     gcm_name='CNRM-CM5'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- CNRM-CM5, CNRM, rcp45, r1i1p1 --- 
+CNRM-CM5-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/CNRM-CM5/r1i1p1/rcp45/
+                     gcm_name='CNRM-CM5'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- CNRM-CM5, CNRM, rcp85, r1i1p1 --- 
+CNRM-CM5-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/CNRM-CM5/r1i1p1/rcp85/
+                     gcm_name='CNRM-CM5'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+# --- HadGEM2-ES, METOHC, historical, r1i1p1 --- 
+HadGEM2-ES-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/HadGEM2-ES/r1i1p1/historical/
+                     gcm_name='HadGEM2-ES'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- HadGEM2-ES, METOHC, rcp26, r1i1p1 --- 
+HadGEM2-ES-r1i1p1-rcp26)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/HadGEM2-ES/r1i1p1/rcp26/
+                     gcm_name='HadGEM2-ES'
+                     experiment_id='rcp26'
+                     gcm_version_id='r1i1p1';;
+
+# --- HadGEM2-ES, METOHC, rcp45, r1i1p1 --- 
+HadGEM2-ES-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/HadGEM2-ES/r1i1p1/rcp45/
+                     gcm_name='HadGEM2-ES'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- HadGEM2-ES, METOHC, rcp60, r1i1p1 --- 
+HadGEM2-ES-r1i1p1-rcp60)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/HadGEM2-ES/r1i1p1/rcp60/
+                     gcm_name='HadGEM2-ES'
+                     experiment_id='rcp60'
+                     gcm_version_id='r1i1p1';;
+
+# --- HadGEM2-ES, METOHC, rcp85, r1i1p1 --- 
+HadGEM2-ES-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/HadGEM2-ES/r1i1p1/rcp85/
+                     gcm_name='HadGEM2-ES'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+
+# --- IPSL-CM5A-LR, IPSL, historical, r1i1p1 --- 
+IPSL-LR-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/IPSL-CM5A-LR/r1i1p1/historical/
+                     gcm_name='IPSL-CM5A-LR'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- IPSL-CM5A-LR, IPSL, rcp45, r1i1p1 --- 
+IPSL-LR-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/IPSL-CM5A-LR/r1i1p1/rcp45/
+                     gcm_name='IPSL-CM5A-LR'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- IPSL-CM5A-LR, IPSL, rcp85, r1i1p1 --- 
+IPSL-LR-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/IPSL-CM5A-LR/r1i1p1/rcp85/
+                     gcm_name='IPSL-CM5A-LR'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+
+# --- IPSL-CM5A-MR, IPSL, historical, r1i1p1 --- 
+IPSL-MR-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/IPSL-CM5A-MR/r1i1p1/historical/
+                     gcm_name='IPSL-CM5A-MR'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- IPSL-CM5A-MR, IPSL, rcp45, r1i1p1 --- 
+IPSL-MR-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/IPSL-CM5A-MR/r1i1p1/rcp45/
+                     gcm_name='IPSL-CM5A-MR'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- IPSL-CM5A-MR, IPSL, rcp85, r1i1p1 --- 
+IPSL-MR-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/IPSL-CM5A-MR/r1i1p1/rcp85/
+                     gcm_name='IPSL-CM5A-MR'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+# --- IPSL-CM5A-MR, IPSL, rcp45, r1i1p1 --- 
+IPSL-MR-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/IPSL-CM5A-MR/r1i1p1/rcp45/
+                     gcm_name='IPSL-CM5A-MR'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- IPSL-CM5A-MR, IPSL, rcp85, r1i1p1 --- 
+IPSL-MR-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/IPSL-CM5A-MR/r1i1p1/rcp85/
+                     gcm_name='IPSL-CM5A-MR'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+# --- NorESM1-M, Norwegian Climate Centre, historical, r1i1p1 --- 
+NorESM1-M-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/NorESM1-M/r1i1p1/
+                     gcm_name='NorESM1-M'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- NorESM1-M, Norwegian Climate Centre, rcp45, r1i1p1 --- 
+NorESM1-M-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/NorESM1-M/r1i1p1/
+                     gcm_name='NorESM1-M'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- NorESM1-M, Norwegian Climate Centre, rcp85, r1i1p1 --- 
+NorESM1-M-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/NorESM1-M/r1i1p1/
+                     gcm_name='NorESM1-M'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+# --- MIROC5, Japan , historical, r1i1p1 --- 
+MIROC5-r1i1p1-hist)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/MIROC5/r1i1p1/historical/mon/
+                     gcm_name='MIROC5'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- MIROC5, Japan , rcp26, r1i1p1 --- 
+MIROC5-r1i1p1-rcp26)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/MIROC5/r1i1p1/rcp26/mon/
+                     gcm_name='MIROC5'
+                     experiment_id='rcp26'
+                     gcm_version_id='r1i1p1';;
+
+# --- MIROC5, Japan , rcp45, r1i1p1 --- 
+MIROC5-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/MIROC5/r1i1p1/rcp45/mon/
+                     gcm_name='MIROC5'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- MIROC5, Japan , rcp60, r1i1p1 --- 
+MIROC5-r1i1p1-rcp60)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/MIROC5/r1i1p1/rcp60/mon/
+                     gcm_name='MIROC5'
+                     experiment_id='rcp60'
+                     gcm_version_id='r1i1p1';;
+
+# --- MIROC5, Japan , rcp85, r1i1p1 --- 
+MIROC5-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby16/sm_grini/Data/CMIP5/MIROC5/r1i1p1/rcp85/mon/
+                     gcm_name='MIROC5'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+
+
+# --- GFDL-ESM2, USA , historical, r1i1p1 --- 
+GFDL-ESM2M-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/GFDL-ESM2M/r1i1p1/historical/mon/
+                     gcm_name='GFDL-ESM2M'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+GFDL-ESM2M-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/GFDL-ESM2M/r1i1p1/rcp45/mon/
+                     gcm_name='GFDL-ESM2M'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+GFDL-ESM2M-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/GFDL-ESM2M/r1i1p1/rcp85/mon/
+                     gcm_name='GFDL-ESM2M'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+
+# --- MPI-ESM-LR, Germany , historical, r1i1p1 --- 
+MPI-ESM-LR-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/MPI-ESM-LR/r1i1p1/historical/mon/
+                     gcm_name='MPI-ESM-LR'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- MPI-ESM-LR, Germany , rcp45, r1i1p1 --- 
+MPI-ESM-LR-r1i1p1-rcp45)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/MPI-ESM-LR/r1i1p1/rcp45/mon/
+                     gcm_name='MPI-ESM-LR'
+                     experiment_id='rcp45'
+                     gcm_version_id='r1i1p1';;
+
+# --- MPI-ESM-LR, Germany , rcp85, r1i1p1 --- 
+MPI-ESM-LR-r1i1p1-rcp85)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/MPI-ESM-LR/r1i1p1/rcp85/mon/
+                     gcm_name='MPI-ESM-LR'
+                     experiment_id='rcp85'
+                     gcm_version_id='r1i1p1';;
+
+
+
+# --- ERA-INTERIM, ECMWF, historical, r1i1p1 --- 
+ERAINT-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/ERAINT/GLOBAL/MM/
+                     gcm_name='ERAINT'
+                     experiment_id='reanalysis'
+                     gcm_version_id='r1i1p1';;
+
+# --- NCEP2, NCEP, historical, r1i1p1 --- 
+NCEP2-r1i1p1-hist)
+                     path_in=/nobackup/rossby14/sm_grini/Data/NCEP/REAN-2/Orig/
+                     gcm_name='NCEP2'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- MERRA, historical, r1i1p1 --- 
+MERRA-r1i1p1-hist)
+                     path_in=/nobackup/rossby16/sm_grini/Data/MERRA/GLOBAL/
+                     gcm_name='MERRA'
+                     experiment_id='reanalysis'
+                     gcm_version_id='r1i1p1';;
+
+# --- MOHC HADISST, observation, r1i1p1 --- 
+HADISST-r1i1p1-hist)
+                     path_in=/nobackup/rossby14/sm_grini/Data/HadISST/MM/
+                     gcm_name='MOHC-HadISST'
+                     experiment_id='observation'
+                     gcm_version_id='r1i1p1';;
+
+
+# --- MRI-CGCM3, MRI, historical, r1i1p1 --- 
+MRI-CGCM3-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/MRI-CGCM3/r1i1p1/historical/
+                     gcm_name='MRI-CGCM3'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- HadGEM2-ES, METOHC, historical, r1i1p1 --- 
+HadGEM2-ES-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/HadGEM2-ES/r1i1p1/historical/
+                     gcm_name='HadGEM2-ES'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- INMCM4, INM, historical, r1i1p1 --- 
+INMCM4-r1i1p1-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/INMCM4/r1i1p1/historical/
+                     gcm_name='INMCM4'
+                     experiment_id='historical'
+                     gcm_version_id='r1i1p1';;
+
+# --- GISS-E2-R, NASA/GISS, historical, r4i1p3 --- 
+GISS-E2-R-r4i1p3-hist)
+                     path_in=/nobackup/rossby15/sm_grini/Data/CMIP5/GISS-E2-R/historical/
+                     gcm_name='GISS-E2-R'
+                     experiment_id='historical'
+                     gcm_version_id='r4i1p3';;
+
+
+#
+#    EMBRACE
+#
+
+# --- EC-EARTH KNMI --- 
+EC-EARTH-r2i1p1-rampup)
+                     path_in=
+                     gcm_name='EC-EARTH'
+                     experiment_id='rcp85-rampup'
+                     gcm_version_id='r2i1p1';;
+
+# --- HadGEM2-ES, METOHC, rcp85, r1i1p1 --- 
+HadGEM2-ES-r2i1p1-rampup)
+                     path_in=
+                     gcm_name='HadGEM2-ES'
+                     experiment_id='rcp85-rampup'
+                     gcm_version_id='r2i1p1';;
+
+# --- HadGEM2-ES, METOHC, rcp85, r1i1p1 --- 
+HadGEM2-ES-r2i1p1-rampdown)
+                     path_in=
+                     gcm_name='HadGEM2-ES'
+                     experiment_id='rcp85-rampdown'
+                     gcm_version_id='r2i1p1';;
+
+# --- IPSL-LR, METOHC, rcp85, r1i1p1 --- 
+IPSL-LR-r2i1p1-rampup)
+                     path_in=
+                     gcm_name='IPSL-CM5A-LR'
+                     experiment_id='rcp85-rampup'
+                     gcm_version_id='r2i1p1';;
+
+# --- GFDL-ESM2M, METOHC, rcp85, r1i1p1 --- 
+GFDL-ESM2M-r2i1p1-rampup)
+                     path_in=
+                     gcm_name='GFDL-ESM2M'
+                     experiment_id='rcp85-rampup'
+                     gcm_version_id='r2i1p1';;
+
+# --- GFDL-ESM2M, METOHC, rcp85, r1i1p1 --- 
+GFDL-ESM2M-r2i1p1-rampdown)
+                     path_in=
+                     gcm_name='GFDL-ESM2M'
+                     experiment_id='rcp85-rampdown'
+                     gcm_version_id='r2i1p1';;
+
+# --- MPI-ESM-LR, METOHC, rcp85, r1i1p1 --- 
+MPI-ESM-LR-r2i1p1-rampup)
+                     path_in=
+                     gcm_name='MPI-ESM-LR'
+                     experiment_id='rcp85-rampup'
+                     gcm_version_id='r2i1p1';;
+
+# --- MPI-ESM-LR, METOHC, rcp85, r1i1p1 --- 
+MPI-ESM-LR-r2i1p1-rampdown)
+                     path_in=
+                     gcm_name='MPI-ESM-LR'
+                     experiment_id='rcp85-rampdown'
+                     gcm_version_id='r2i1p1';;
+
+
+
+
+
+
+
+# --- EC-EARTH 2.3, T159, SA07, amip, r2i1p1, (1979.01-2008.12) ---
+SA07)        path_in='/nobackup/vagn2/cmip5/SA07-SAVED/IFS/'
+             smhi_name='SA07'
+             experiment_id='amip'
+             experiment='AMIP'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r2i1p1'
+             project_id='CMIP5'
+             parent_experiment='N/A'
+             parent_experiment_id='N/A'
+             realization=1 
+	     initialization_method=1
+             physics_version=1
+             comment='preliminary output: EC-EARTH v2.3 for CMIP5, SA071 (r2i1p1), amip, converted to netcdf at Rossby Centre, SMHI';;
+
+# --- EC-EARTH 2.3, T159, SST: observed annual cycle + anomalies from the coupled CMIP5 experiment, amip, r2i1p1, (1979.01-2008.12) ---
+hist_1979-2008_t159)        
+             path_in='/nobackup/rossby16/rossby/joint_exp/impact2c/hist_1979-2008_t159/IFS/'
+             smhi_name='SA07'
+             experiment_id='historical-sst'
+             experiment='historical-sst'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r12i1p1'
+             project_id='IMPACT2C'
+             parent_experiment='pre-industrial control'
+             parent_experiment_id='piControl'
+             realization=12 
+	     initialization_method=1
+             physics_version=1
+             comment='IMPACT2C: EC-EARTH v2.3, SST - monthly anomalies from the coupled CMIP5 experiment SHC1 (historical, r12i1p1) superimposed on the climatologocial annual cycle from observations (AMIP)';;
+
+# --- EC-EARTH 2.3, T511, SST: observed annual cycle + anomalies from the coupled CMIP5 experiment, amip, r2i1p1, (1979.01-2008.12) ---
+hist_1979-2008_t511)        
+             path_in='/nobackup/rossby16/rossby/joint_exp/impact2c/hist_1979-2008_t511/IFS/'
+             smhi_name='SA09'
+             experiment_id='historical-sst'
+             experiment='historical-sst'
+             gcm_name='EC-EARTH-T511'
+             gcm_version_id='r2i1p1'
+             project_id='IMPACT2C'
+             parent_experiment='pre-industrial control'
+             parent_experiment_id='piControl'
+             realization=2 
+	     initialization_method=1
+             physics_version=1
+             comment='IMPACT2C: EC-EARTH v2.3, T511, SA09, r2i1p1, as SA08 but SST - monthly anomalies from the coupled CMIP5 experiment SHC1 (historical, r12i1p1) superimposed on the climatologocial annual cycle from observations (AMIP)';;
+
+# --- EC-EARTH 2.3, T159, SF47, rcp45, corrected SST, present-day landuse, r12i1p1, (2041-2070) ---
+rcp45_2041-2070_t159_pd-landuse)        
+             path_in='/nobackup/rossby16/rossby/joint_exp/impact2c/rcp45_2041-2070_t159_pd-landuse/IFS/'
+             experiment_id='rcp45-sst-pd-landuse'
+             smhi_name='SF47'
+             experiment='RCP4.5, corrected SST and sea ice, present-day landuse'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r12i1p1'
+             project_id='IMPACT2C'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=12 
+	     initialization_method=1
+             physics_version=1
+             comment='IMPACT2C: EC-EARTH v2.3, T159, SF47, r12i1p1, rcp45, present-day landuse, SST and sea-ice anomalies from timeslice of RCP45 experiment centred on the year when the temperature change reaches 2 degrees';;
+
+
+# --- EC-EARTH 2.3, T159, SF47, rcp45, corrected SST, future-landuse, r12i1p1, (2041-2070) ---
+rcp45_2041-2070_t159_future-landuse)        
+             path_in='/nobackup/rossby16/rossby/joint_exp/impact2c/rcp45_2041-2070_t159_future-landuse/IFS/'
+             experiment_id='rcp45-sst-future-landuse'
+             smhi_name='SF47'
+             experiment='RCP4.5, corrected SST and sea ice, future landuse'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r12i1p1'
+             project_id='IMPACT2C'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=12 
+	     initialization_method=1
+             physics_version=1
+             comment='IMPACT2C: EC-EARTH v2.3, T159, SF47, r12i1p1, rcp45, FUTURE LANDUSE, SST and sea-ice anomalies from timeslice of RCP45 experiment centred on the year when the temperature change reaches 2 degrees';;
+
+
+# --- EC-EARTH 2.3, T159, SF87, rcp85, corrected SST, future-landuse, r12i1p1, (2027-2056) ---
+rcp85_2027-2056_t159_future-landuse)        
+             path_in='/nobackup/rossby16/rossby/joint_exp/impact2c/rcp85_2027-2056_t159_future-landuse/IFS/'
+             experiment_id='rcp85-sst-future-landuse'
+             smhi_name='SF87'
+             experiment='RCP8.5, corrected SST and sea ice, future landuse'
+             gcm_name='EC-EARTH'
+             gcm_version_id='r12i1p1'
+             project_id='IMPACT2C'
+             parent_experiment='historical'
+             parent_experiment_id='historical'
+             realization=12 
+	     initialization_method=1
+             physics_version=1
+             comment='IMPACT2C: EC-EARTH v2.3, T159, SF87, r12i1p1, rcp85, FUTURE LANDUSE, SST and sea-ice anomalies from timeslice of RCP85 experiment centred on the year when the temperature change reaches 2 degrees';;
+
+
+# --- missing simulation id          
+     *)  echo ...   no simulation   '"'${run_in[$run]}'"'  in  $file_run
+         echo ...   TERMINATED
+         exit;;
+
+esac

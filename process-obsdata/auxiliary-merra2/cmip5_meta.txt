@@ -1,0 +1,442 @@
+case ${var_in[$var]} in
+  orog)             standard_name='surface_altitude'
+                    units='m'
+                    long_name='Surface Altitude';;
+
+  p0)               
+                    long_name='vertical coordinate formula term: reference pressure '
+                    units='Pa';;
+
+  ptop)             
+                    long_name='pressure at top of model '
+                    units='Pa';;
+
+  a)                
+                    long_name='vertical coordinate formula term: a(k)';;
+
+  b)                
+                    long_name='vertical coordinate formula term: b(k)';;
+
+  a_bnds)           
+                    long_name='vertical coordinate formula term: a(k+1/2)';;
+
+  b_bnds)           
+                    long_name='vertical coordinate formula term: b(k+1/2)';;
+
+  ap)               
+                    long_name='vertical coordinate formula term: ap(k)'
+                    units='Pa';;
+
+  ap_bnds)          
+                    long_name='vertical coordinate formula term: ap(k+1/2)'
+                    units='Pa';;
+
+  ztop)             
+                    long_name='height of top of model '
+                    units='m';;
+
+  tas)              standard_name='air_temperature'
+                    units='K'
+                    cell_methods='time: mean'
+                    long_name='Near-Surface Air Temperature';;
+
+  t2m)              standard_name='2m_air_temperature'
+                    units='K'
+                    cell_methods='time: mean'
+                    long_name='2 meter Air Temperature';;
+
+  ts)               standard_name='surface_temperature'
+                    units='K'
+                    cell_methods='time: mean'
+                    long_name='Surface Temperature';;
+
+  tasmin)           standard_name='air_temperature'
+                    units='K'
+                    cell_methods='time: minimum within days time: mean over days'
+                    long_name='Daily Minimum Near-Surface Air Temperature';;
+
+  tasmax)           standard_name='air_temperature'
+                    units='K'
+                    cell_methods='time: maximum within days time: mean over days'
+                    long_name='Daily Maximum Near-Surface Air Temperature';;
+
+  psl)              standard_name='air_pressure_at_sea_level'
+                    units='Pa'
+                    cell_methods='time: mean'
+                    long_name='Sea Level Pressure';;
+
+  ps)               standard_name='surface_air_pressure'
+                    units='Pa'
+                    cell_methods='time: mean'
+                    long_name='Surface Air Pressure';;
+
+  uas)              standard_name='eastward_wind'
+                    units='m s-1'
+                    cell_methods='time: mean'
+                    long_name='Eastward Near-Surface Wind';;
+
+  vas)              standard_name='northward_wind'
+                    units='m s-1'
+                    cell_methods='time: mean'
+                    long_name='Northward Near-Surface Wind';;
+
+  sfcWind)          standard_name='wind_speed'
+                    units='m s-1'
+                    cell_methods='time: mean'
+                    long_name='Near-Surface Wind Speed';;
+
+  hurs)             standard_name='relative_humidity'
+                    units='%'
+                    cell_methods='time: mean'
+                    long_name='Near-Surface Relative Humidity';;
+
+  huss)             standard_name='specific_humidity'
+                    units='1'
+                    cell_methods='time: mean'
+                    long_name='Near-Surface Specific Humidity';;
+
+  pr)               standard_name='precipitation_flux'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Precipitation';;
+
+  prCorr)           standard_name='precipitation_flux_bias_corrected'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Precipitation Bias Corrected';;
+
+  prsn)             standard_name='snowfall_flux'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Snowfall Flux';;
+
+  prc)              standard_name='convective_precipitation_flux'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Convective Precipitation';;
+
+  evspsbl)          standard_name='water_evaporation_flux'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Evaporation';;
+
+  sbl)              standard_name='surface_snow_and_ice_sublimation_flux'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Surface Snow and Ice Sublimation Flux';;
+
+  tauu)             standard_name='surface_downward_eastward_stress'
+                    units='Pa'
+                    cell_methods='time: mean'
+                    long_name='Surface Downward Eastward Wind Stress';;
+
+  tauv)             standard_name='surface_downward_northward_stress'
+                    units='Pa'
+                    cell_methods='time: mean'
+                    long_name='Surface Downward Northward Wind Stress';;
+
+  hfls)             standard_name='surface_upward_latent_heat_flux'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Upward Latent Heat Flux';;
+
+  hfss)             standard_name='surface_upward_sensible_heat_flux'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Upward Sensible Heat Flux';;
+
+  rlds)             standard_name='surface_downwelling_longwave_flux_in_air'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Downwelling Longwave Radiation';;
+
+  rlus)             standard_name='surface_upwelling_longwave_flux_in_air'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Upwelling Longwave Radiation';;
+
+  rsds)             standard_name='surface_downwelling_shortwave_flux_in_air'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Downwelling Shortwave Radiation';;
+
+  rsus)             standard_name='surface_upwelling_shortwave_flux_in_air'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Upwelling Shortwave Radiation';;
+
+  rsdscs)           standard_name='surface_downwelling_shortwave_flux_in_air_assuming_clear_sky'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Downwelling Clear-Sky Shortwave Radiation';;
+
+  rsuscs)           standard_name='surface_upwelling_shortwave_flux_in_air_assuming_clear_sky'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Upwelling Clear-Sky Shortwave Radiation';;
+
+  rldscs)           standard_name='surface_downwelling_longwave_flux_in_air_assuming_clear_sky'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Surface Downwelling Clear-Sky Longwave Radiation';;
+
+  rsdt)             standard_name='toa_incoming_shortwave_flux'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='TOA Incident Shortwave Radiation';;
+
+  rsut)             standard_name='toa_outgoing_shortwave_flux'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='TOA Outgoing Shortwave Radiation';;
+
+  rlut)             standard_name='toa_outgoing_longwave_flux'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='TOA Outgoing Longwave Radiation';;
+
+  rlutcs)           standard_name='toa_outgoing_longwave_flux_assuming_clear_sky'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='TOA Outgoing Clear-Sky Longwave Radiation';;
+
+  rsutcs)           standard_name='toa_outgoing_shortwave_flux_assuming_clear_sky'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='TOA Outgoing Clear-Sky Shortwave Radiation';;
+
+  prw)              standard_name='atmosphere_water_vapor_content'
+                    units='kg m-2'
+                    cell_methods='time: mean'
+                    long_name='Water Vapor Path';;
+
+  clt)              standard_name='cloud_area_fraction'
+                    units='%'
+                    cell_methods='time: mean'
+                    long_name='Total Cloud Fraction';;
+
+  clwvi)            standard_name='atmosphere_cloud_condensed_water_content'
+                    units='kg m-2'
+                    cell_methods='time: mean'
+                    long_name='Condensed Water Path';;
+
+  clivi)            standard_name='atmosphere_cloud_ice_content'
+                    units='kg m-2'
+                    cell_methods='time: mean'
+                    long_name='Ice Water Path';;
+
+  rtmt)             standard_name='net_downward_radiative_flux_at_top_of_atmosphere_model'
+                    units='W m-2'
+                    cell_methods='time: mean'
+                    long_name='Net Downward Flux at Top of Model';;
+
+  ccb)              standard_name='air_pressure_at_convective_cloud_base'
+                    units='Pa'
+                    cell_methods='time: mean'
+                    long_name='Air Pressure at Convective Cloud Base';;
+
+  cct)              standard_name='air_pressure_at_convective_cloud_top'
+                    units='Pa'
+                    cell_methods='time: mean'
+                    long_name='Air Pressure at Convective Cloud Top';;
+
+  ci)               standard_name='convection_time_fraction'
+                    units='1'
+                    cell_methods='time: mean'
+                    long_name='Fraction of Time Convection Occurs';;
+
+  sci)              standard_name='shallow_convection_time_fraction'
+                    units='1'
+                    cell_methods='time: mean'
+                    long_name='Fraction of Time Shallow Convection Occurs';;
+
+  fco2antt)         standard_name='tendency_of_atmosphere_mass_content_of_carbon_dioxide_expressed_as_carbon_due_to_anthropogenic_emission'
+                    units='kg  m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Carbon Mass Flux into Atmosphere Due to All Anthropogenic Emissions of CO2';;
+
+  fco2fos)          standard_name='tendency_of_atmosphere_mass_content_of_carbon_dioxide_expressed_as_carbon_due_to_emission_from_fossil_fuel_combustion'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Carbon Mass Flux into Atmosphere Due to Fossil Fuel Emissions of CO2';;
+
+  fco2nat)          standard_name='surface_upward_mass_flux_of_carbon_dioxide_expressed_as_carbon_due_to_emission_from_natural_sources'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Surface Carbon Mass Flux into the Atmosphere Due to Natural Sources';;
+
+  cl)               standard_name='cloud_area_fraction_in_atmosphere_layer'
+                    units='%'
+                    cell_methods='time: mean'
+                    long_name='Cloud Area Fraction';;
+
+  clw)              standard_name='mass_fraction_of_cloud_liquid_water_in_air'
+                    units='1'
+                    cell_methods='time: mean'
+                    long_name='Mass Fraction of Cloud Liquid Water';;
+
+  cli)              standard_name='mass_fraction_of_cloud_ice_in_air'
+                    units='1'
+                    cell_methods='time: mean'
+                    long_name='Mass Fraction of Cloud Ice';;
+
+  mc)               standard_name='atmosphere_net_upward_convective_mass_flux'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Convective Mass Flux';;
+
+  ta)               standard_name='air_temperature'
+                    units='K'
+                    cell_methods='time: mean'
+                    long_name='Air Temperature';;
+
+  ua)               standard_name='eastward_wind'
+                    units='m s-1'
+                    cell_methods='time: mean'
+                    long_name='Eastward Wind';;
+
+  va)               standard_name='northward_wind'
+                    units='m s-1'
+                    cell_methods='time: mean'
+                    long_name='Northward Wind';;
+
+  hus)              standard_name='specific_humidity'
+                    units='1'
+                    cell_methods='time: mean'
+                    long_name='Specific Humidity';;
+
+  hur)              standard_name='relative_humidity'
+                    units='%'
+                    cell_methods='time: mean'
+                    long_name='Relative Humidity';;
+
+  wap)              standard_name='lagrangian_tendency_of_air_pressure'
+                    units='Pa s-1'
+                    cell_methods='time: mean'
+                    long_name='omega (=dp/dt)';;
+
+  zg)               standard_name='geopotential_height'
+                    units='m'
+                    cell_methods='time: mean'
+                    long_name='Geopotential Height';;
+
+  tro3)             standard_name='mole_fraction_of_ozone_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean'
+                    long_name='Mole Fraction of O3';;
+
+  tro3Clim)         standard_name='mole_fraction_of_ozone_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Mole Fraction of O3';;
+
+  co2)              standard_name='mole_fraction_of_carbon_dioxide_in_air'
+                    units='1e-6'
+                    cell_methods='time: mean'
+                    long_name='Mole Fraction of CO2';;
+
+  co2Clim)          standard_name='mole_fraction_of_carbon_dioxide_in_air'
+                    units='1e-6'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Mole Fraction of CO2';;
+
+  co2mass)          standard_name='atmosphere_mass_of_carbon_dioxide'
+                    units='kg'
+                    cell_methods='time: mean'
+                    long_name='Total Atmospheric Mass of CO2';;
+
+  co2massClim)      standard_name='atmosphere_mass_of_carbon_dioxide'
+                    units='kg'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Total Atmospheric Mass of CO2';;
+
+  ch4)              standard_name='mole_fraction_of_methane_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean'
+                    long_name='Mole Fraction of CH4';;
+
+  ch4Clim)          standard_name='mole_fraction_of_methane_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Mole Fraction of CH4';;
+
+  ch4global)        standard_name='mole_fraction_of_methane_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean'
+                    long_name='Global Mean Mole Fraction of CH4';;
+
+  ch4globalClim)    standard_name='mole_fraction_of_methane_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Global Mean Mole Fraction of CH4';;
+
+  n2o)              standard_name='mole_fraction_of_nitrous_oxide_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean'
+                    long_name='Mole Fraction of N2O';;
+
+  n2oClim)          standard_name='mole_fraction_of_nitrous_oxide_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Mole Fraction of N2O';;
+
+  n2oglobal)        standard_name='mole_fraction_of_nitrous_oxide_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean'
+                    long_name='Global Mean Mole Fraction of N2O';;
+
+  n2oglobalClim)    standard_name='mole_fraction_of_nitrous_oxide_in_air'
+                    units='1e-9'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Global Mean Mole Fraction of N2O';;
+
+  cfc11global)      standard_name='mole_fraction_of_cfc11_in_air'
+                    units='1e-12'
+                    cell_methods='time: mean'
+                    long_name='Global Mean Mole Fraction of CFC11';;
+
+  cfc12global)      standard_name='mole_fraction_of_cfc12_in_air'
+                    units='1e-12'
+                    cell_methods='time: mean'
+                    long_name='Global Mean Mole Fraction of CFC12';;
+
+  hcfc22global)     standard_name='mole_fraction_of_hcfc22_in_air'
+                    units='1e-12'
+                    cell_methods='time: mean'
+                    long_name='Global Mean Mole Fraction of HCFC22';;
+
+  cfc113global)     standard_name='mole_fraction_of_cfc113_in_air'
+                    units='1e-12'
+                    cell_methods='time: mean'
+                    long_name='Global Mean Mole Fraction of CFC113';;
+
+  pfull)            standard_name='air_pressure'
+                    units='Pa'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Pressure on Model Levels';;
+
+  phalf)            standard_name='air_pressure'
+                    units='Pa'
+                    cell_methods='time: mean within years time: mean over years'
+                    long_name='Pressure on Model Half-Levels';;
+
+  tasAdjust)        standard_name='air_temperature'
+                    units='K'
+                    cell_methods='time: mean'
+                    long_name='Bias-Corrected Near-Surface Air Temperature';;
+
+  tsAdjust)         standard_name='surface_temperature'
+                    units='K'
+                    cell_methods='time: mean'
+                    long_name='Bias-Corrected Surface Temperature';;
+
+  pslAdjust)        standard_name='air_pressure_at_sea_level'
+                    units='Pa'
+                    cell_methods='time: mean'
+                    long_name='Bias-Corrected Sea Level Pressure';;
+
+  prAdjust)         standard_name='precipitation_flux'
+                    units='kg m-2 s-1'
+                    cell_methods='time: mean'
+                    long_name='Bias-Corrected Precipitation'
+esac
