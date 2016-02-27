@@ -1,0 +1,15 @@
+# How to use, 
+#  a) generate file 'all-input-files-fullpath.txt' with full paths to all files, one line per file
+#  b) update the "apply-lsm-header.ncl"-file
+#  c) update the "apply-lsm-footer.ncl"-file
+#  d) update the indata array, "infiles" below to be consistent with what is in the *-header, *-footer file above
+#  e) set modulo to a number between 2-9
+#  f) follow the steps in 13-19
+
+modulo=9
+ls -1 orig-amip-southern-without-lsm/*nc  > all-input-files-fullpath.txt
+tt=-1;while read line;do tt=$((tt+1));num=$(echo 0$((tt%modulo)));echo $line | sed -e 's/^/"/' -e 's/$/",\\/'  >> "hr"-${num}.txt;done < all-input-files-fullpath.txt
+for fil in $(ls hr-*);do sed -i '1iinfiles = (/\\' $fil; sed -i '$s/",\\/"\/\)/' $fil;done
+for fil in $(ls hr-*);do num=$(echo $fil | sed 's/.*\([0-9][0-9]\).*/\1/');cat apply-lsm-header.ncl >> hr-${num}.ncl;cat $fil >> hr-${num}.ncl;cat apply-lsm-footer.ncl >> hr-${num}.ncl;done
+rm -f hr-*txt;chmod 755 hr-*ncl
+for num in $(seq 0 $((modulo - 1)));do num=0$num;sbatch -n 1 -t 10 -A rossby_fat --mem=20000 ./hr-${num}.ncl;done
