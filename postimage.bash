@@ -48,7 +48,7 @@ while getopts "h" opt; do
     h)
       usage_and_exit 0
       ;;
-      ;;?)
+    ?)
       echo "Invalid option: -$OPTARG" >&2
       usage_and_exit 1
       ;;
@@ -68,5 +68,7 @@ then
 fi
 
 # Postimage
-curl -Ls -F "upload[]=@${image}" -F "adult=no" http://postimage.org/ | grep "href='http:\/\/postimg.org\/image\/" | sed "s%.*href='\(http:\/\/postimg.org\/image\/[a-z0-9]*\)\/.*%\1%" 
+rm -f postimage.html
+curl -Ls -F "upload[]=@${image}" -F "adult=no" http://postimage.org/ > postimage.html 2>&1 
+cat postimage.html | grep "href='http:\/\/postimg.org\/image\/" | sed "s%.*href='\(http:\/\/postimg.org\/image\/[a-z0-9]*\)\/.*%\1%"
 
