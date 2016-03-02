@@ -6,7 +6,8 @@ fin = addfile(file_in, "r")
 file_out = "test.nc"
 
 if (isfilepresent_general(file_out)) then
-    system("rm -f " + file_out)
+    print("Output file " + file_out + " already exists")
+    status_exit(1)
 end if
 
 fout = addfile(file_out, "c")
