@@ -14,8 +14,8 @@
 # --------------------
 # ---   VARIABLES  ---
 # --------------------
- var_in=(t2m ts)
-
+#var_in=(pr prCorr)
+var_in=(tas ts psl)
 
 # --------------------
 # --- SIMULATIONS  ---
@@ -35,14 +35,12 @@ ly_in=(2015)   # last year
 sy_in=(0)
 
 # fluxes
-path_in="/nobackup/rossby17/sm_maeva/Data/Primavera-upload/merra-2/MERRA2/V5.12.4/orig/2016-02-25-flx/"
-path_out="/nobackup/rossby17/sm_maeva/Data/Primavera-upload/merra-2/MERRA2/V5.12.4/input/"
+#path_in="/nobackup/rossby17/sm_maeva/Data/Primavera-upload/merra-2/MERRA2/V5.12.4/orig/2016-02-25-flx/"
+#path_out="/nobackup/rossby17/sm_maeva/Data/Primavera-upload/merra-2/MERRA2/V5.12.4/input/"
 
 # single levels
 path_in="/nobackup/rossby17/sm_maeva/Data/Primavera-upload/merra-2/MERRA2/V5.12.4/orig/2016-02-25-slv/"
 path_out="/nobackup/rossby17/sm_maeva/Data/Primavera-upload/merra-2/MERRA2/V5.12.4/input/"
-
-#path_out="/nobackup/rossby17/sm_maeva/Data/Primavera-upload/merra-2/MERRA2/V5.12.4/input/tmp/"
 
 # --------------------
 # --- PREPARATION  ---
@@ -213,7 +211,7 @@ for ((run=0;run<=num_run-1;run++)); do
                     # --- -180 to 180 --> 0 to 360 ---
                     # --------------------------------
                     ncap2 -O -h -s ''${var_in[$var]}'='$merra_name'; '${var_in[$var]}'(:,:,0:287)='$merra_name'(:,:,288:575); '${var_in[$var]}'(:,:,288:575)='$merra_name'(:,:,0:287);' $file_out $file_out
-                    ncap2 -O -h -s 'lon_old=lon; lon(0:287)=lon_old(288:575); lon(288:575)=lon_old(0:287);  where(lon < 0) lon=lon+360;' $file_out $file_out
+                    ncap2 -O -h -s 'lon_old=lon; lon(0:287)=lon_old(288:575); lon(288:575)=lon_old(0:287);  where(lon < 0) lon=lon+360;lon(0) = 0.0;' $file_out $file_out
                     ncks -O -x -v lon_old,$merra_name -h $file_out $file_out
 
 
