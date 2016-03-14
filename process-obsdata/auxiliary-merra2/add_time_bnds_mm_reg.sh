@@ -22,8 +22,8 @@
     'ncatted' -a grid_mapping,${var_in[$var]},d,, -h ${file_dw_tmp}
     'ncatted' -a bounds,time,d,, -h ${file_dw_tmp}
 
-    ${cdo} -shifttime,-14days ${file_dw_tmp} ${file_dw}                                           # lower time limit
-    ${cdo} -shifttime,1month ${file_dw} ${file_up}                                                # upper time limit
+    ${cdo} -shifttime,-14days -shifttime,-30minutes ${file_dw_tmp} ${file_dw}             # lower time limit
+    ${cdo} -shifttime,1month ${file_dw} ${file_up}                                        # upper time limit
 
     'ncks' -O -3 ${file_dw} ${file_dw}3
     'ncks' -O -3 ${file_up} ${file_up}3
