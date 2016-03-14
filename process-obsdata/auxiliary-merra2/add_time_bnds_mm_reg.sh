@@ -41,7 +41,7 @@
      'ncatted' -a bounds,time,c,c,"time_bnds" -h ${file_out}
 
   # ---- remove temporary file (time bounds) --------
-   [ -f ${file_dw}_tmp ] && rm ${file_dw_tmp}           # remove temporary time bounds file if exist
+   [ -f ${file_dw_tmp} ] && rm ${file_dw_tmp}           # remove temporary time bounds file if exist
    [ -f ${file_dw} ] && rm ${file_dw}                   # remove temporary lower time bound file if exist
    [ -f ${file_dw}3 ] && rm ${file_dw}3                 # remove temporary lower time bound file if exist
    [ -f ${file_up} ] && rm ${file_up}                   # remove temporary upper time bound file if exist
