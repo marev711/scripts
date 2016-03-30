@@ -617,6 +617,19 @@ rcp85_2027-2056_t159_future-landuse)
              physics_version=1
              comment='IMPACT2C: EC-EARTH v2.3, T159, SF87, r12i1p1, rcp85, FUTURE LANDUSE, SST and sea-ice anomalies from timeslice of RCP85 experiment centred on the year when the temperature change reaches 2 degrees';;
 
+# --- MESAN Reanalysis
+MESAN)
+             experiment_id='reanalysis'
+             smhi_name=''
+             experiment='Reanalysis over Europe'
+             gcm_name='MESAN'
+             gcm_version_id='r1i1p1'
+             project_id='MESAN'
+             parent_experiment=''
+             parent_experiment_id=''
+             realization=1
+             comment='MESAN Reanalysis over Europe';;
+
 
 # --- missing simulation id          
      *)  echo ...   no simulation   '"'${run_in[$run]}'"'  in  $file_run
