@@ -15,8 +15,8 @@
 ########################
 
 program=$0
-input=/nobackup/rossby17/sm_maeva/Data/Primavera-upload/mesan/input/intermediate/
-output=/nobackup/rossby17/sm_maeva/Data/Primavera-upload/mesan/input/intermediate/
+input=/nobackup/rossby17/sm_maeva/Data/Primavera-upload/mesan/input/intermediate/t2m/
+output=/nobackup/rossby17/sm_maeva/Data/Primavera-upload/mesan/input/intermediate/t2m/
 run_in=(MESAN)
 run=0
 var_in=(tas)

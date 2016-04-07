@@ -16,7 +16,7 @@
 
 program=$0
 root_t2m_grib_folder=/nobackup/smhid9/sm_tland/euro4m/mesan_e4m/t2m/
-output=/nobackup/rossby17/sm_maeva/Data/Primavera-upload/mesan/input/intermediate/
+output=/nobackup/rossby17/sm_maeva/Data/Primavera-upload/mesan/input/intermediate/t2m/
 
 function usage {
  echo "Usage: ./scalar-mesan-t2m.bash -y <year>
