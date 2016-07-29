@@ -20,7 +20,7 @@
 #
 ########################
 
-clara_globbed_dir='/nobackup/smhid11/foua/data/CLARA-A2/[0-9][0-9][0-9][0-9]/[0-9][0-9]/nc/AVPOS_[0-9][0-9][0-9][0-9][0-9][0-9]_GAC_V002_L3/'
+clara_globbed_dir='/nobackup/smhid11/foua/data/CLARA-A2_final/[0-9][0-9][0-9][0-9]/[0-9][0-9]/nc/AVPOS_[0-9][0-9][0-9][0-9][0-9][0-9]_GAC_V002_L3/'
 filename_var=CFC
 origvarname=cfc
 targetvarname=clt
