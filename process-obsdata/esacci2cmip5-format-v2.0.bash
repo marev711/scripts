@@ -1,7 +1,7 @@
 #! /bin/bash -eu
- 
+
 #########################
-# 
+#
 # Name: esacci2cmip5-format.bash
 #
 # Purpose: Rewrite ESA-CCI variable files to CMIP5:ish format
@@ -21,10 +21,12 @@
 #
 ########################
 
-cmip_variable=clwvi  # clivi, clt
-cci_variable=lwp     # iwp  , cc_total
-cmip_filename=${cmip_variable}_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv1.4_observation_r1i1p1
+cmip_variable=clt # clwvi  clivi, clt
+cci_variable=cfc # lwp     # iwp  , cfc
+cmip_filename=${cmip_variable}_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv2.0_observation_r1i1p1
 # data folder as of Nov 2015: /nobackup/rossby17/rossby/joint_exp/esacci/Clouds/phase2/
+# data folder as of July 2016: /nobackup/rossby17/sm_maeva/Data/ESACCI-phase2/raw
+# data out folder as of July 2016: /nobackup/rossby17/sm_maeva/Data/ESACCI-phase2/processed
 
 function usage {
  echo "
@@ -36,7 +38,27 @@ function usage {
 
     Extracts, rename and concateante variables from ESA-CCI files
     into a sinlge CMIP5:ish file.
-" 1>&2 
+" 1>&2
+}
+
+function log {
+ echo "[ $(date -u '+%Y-%m-%d  %H:%M') ]: " $*
+}
+
+info()
+{
+    log "*II* $*"
+}
+
+warning()
+{
+    log "*WW* $*"
+}
+
+error()
+{
+    log "*EE* $*" 1>&2
+    exit 1
 }
 
 function usage_and_exit {
@@ -71,6 +93,9 @@ done
 all_input=$(ls -1 ${input_directory}/*nc)
 first_date=$(basename $(ls -1 ${input_directory}/*nc | awk -F - '{print $1}' | sort | head -1))
 last_date=$(basename $(ls -1 ${input_directory}/*nc | awk -F - '{print $1}' | sort | tail -1))
+
+info "First date in data set: $first_date"
+info "Last date in data set: $last_date"
 
 output_tmp=${output_directory}/tmp
 mkdir $output_tmp
