@@ -21,7 +21,7 @@
 #
 ########################
 
-cmip_variable=cltu # clut clwvi  clivi, clt
+cmip_variable=cltu # cltu clwvi  clivi, clt
 cci_variable=cfc_unc # cfc_unc lwp     # iwp  , cfc
 cmip_filename=${cmip_variable}_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv2.0_observation_r1i1p1
 # data folder as of Nov 2015: /nobackup/rossby17/rossby/joint_exp/esacci/Clouds/phase2/
