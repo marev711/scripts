@@ -7,6 +7,6 @@
 ; Usage:
 ;   .//netcdf-2d-latlon-to-1d-latlon.ncl -file_in=<input-file> -out_dir=<output-dir>
 
-load "/home/sm_maeva/scripts/ncl-auxiliary.ncl"
+load "/home/sm_maeva/scripts/ncl-netcdf-manipulation/ncl-auxiliary.ncl"
 
 
