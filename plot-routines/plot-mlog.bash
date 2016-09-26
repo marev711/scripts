@@ -63,7 +63,7 @@ while getopts "hn:" opt; do
   esac
 done
 
-if [ ! $# -eq 0 ]; then
+if [ ! $# -eq 2 ]; then
   echo "Wrong number of arguments" 2>&1
   usage_and_exit 1
 fi
@@ -78,7 +78,7 @@ echo '     set title "Memory usage by node"
       set yrange [0:1]
       set ylabel "Ratio of Node memory used"
       set terminal png' >> ${tmpgnu}
-echo 'set output '${png_filename} >> ${tmpgnu}
+echo 'set output "'${png_filename}'"' >> ${tmpgnu}
 for mfil in $(ls mlog.*)
 do
     echo ${plotcmd}\"${mfil}\"' using 1:($3)/($2) with linespoints, \' >> ${tmpgnu}
