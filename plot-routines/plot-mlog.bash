@@ -6,7 +6,7 @@
 #
 # Purpose: 
 #
-# Usage: ./plot-mlog.bash 
+# Usage: ./plot-mlog.bash -n <output png filename>
 #
 # Revision history: 2016-09-26  --  Script created, Martin Evaldsson, Rossby Centre
 #
@@ -18,7 +18,7 @@ program=$0
 
 
 function usage {
- echo "Usage: ./plot-mlog.bash 
+ echo "Usage: ./plot-mlog.bash  -n <output png filename>
 " 1>&2 
 }
 
@@ -48,10 +48,13 @@ function usage_and_exit {
   exit $exit_code
 }
 
-while getopts "h" opt; do
+while getopts "hn:" opt; do
   case $opt in
     h)
       usage_and_exit 0
+      ;;
+    n)
+      png_filename=$OPTARG
       ;;
     ?)
       echo "Invalid option: -$OPTARG" >&2
@@ -69,17 +72,21 @@ tmpgnu=tmp.gnuplot
 plotcmd="plot "
 echo '#!/usr/bin/gnuplot -persist' > ${tmpgnu}
 echo '     set title "Memory usage by node"
-     set timefmt "%Y%m%d-%H:%M:%S"
-     set xdata time
-     set xlabel "Wall clock time"
-     set yrange [0:1]
-     set ylabel "Ratio of Node memory used"' >> ${tmpgnu}
+      set timefmt "%Y%m%d-%H:%M:%S"
+      set xdata time
+      set xlabel "Wall clock time"
+      set yrange [0:1]
+      set ylabel "Ratio of Node memory used"
+      set terminal png' >> ${tmpgnu}
+echo 'set output '${png_filename} >> ${tmpgnu}
 for mfil in $(ls mlog.*)
 do
     echo ${plotcmd}\"${mfil}\"' using 1:($3)/($2) with linespoints, \' >> ${tmpgnu}
     plotcmd=""
 done
 sed -i '$ s/, \\//' ${tmpgnu}
+echo 'replot' >> ${tmpgnu}
+
 chmod 755 ${tmpgnu}
 ./${tmpgnu}
 
