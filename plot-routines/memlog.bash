@@ -18,7 +18,7 @@ program=$0
 
 function usage {
  echo "Usage: ./memlog.bash -n node-list -j jobid -r
- -n  nodelist  - comma spareted list of full node names, e.g., n301,n302
+ -n  nodelist  - nodelist as listed by sq on Bi, e.g., n[530-545,551]
  -j     jobid  - job ID
  -r            - remove existing memlog-files
 " 1>&2 
