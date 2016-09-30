@@ -1,4 +1,4 @@
-#! /bin/bash -
+#! /bin/bash -eu
  
 #########################
 # 
@@ -6,7 +6,7 @@
 #
 # Purpose: Check and log memory usage on set of nodes
 #
-# Usage: ./memlog.bash -n node-list -j jobid -s
+# Usage: ./memlog.bash -j jobid -s
 #
 # Revision history: 2016-09-26  --  Script created, Martin Evaldsson, Rossby Centre
 #
@@ -17,8 +17,7 @@
 program=$0
 
 function usage {
- echo "Usage: ./memlog.bash -n node-list -j jobid -r
- -n  nodelist  - nodelist as listed by sq on Bi, e.g., n[530-545,551]
+ echo "Usage: ./memlog.bash -j jobid -r
  -j     jobid  - job ID
  -r            - remove existing memlog-files
 " 1>&2 
@@ -56,13 +55,10 @@ if [ $# -eq 0 ]; then
 fi
 
 remove_memlog_files=false
-while getopts "hn:j:r" opt; do
+while getopts "hj:r" opt; do
   case $opt in
     h)
       usage_and_exit 0
-      ;;
-    n)
-        nodes=$(hostlist -e $OPTARG | tr '\n' ',' | sed 's/,$//')
       ;;
     j)
         jobid=$OPTARG
@@ -76,16 +72,18 @@ while getopts "hn:j:r" opt; do
       ;;
   esac
 done
+nodes=$(squeue -j ${jobid} -o "%N" | tail -1)
+node_list=$(hostlist -e ${nodes} | tr '\n' ',' | sed 's/,$//')
 
 if [ ${remove_memlog_files} == "true" ]
 then
-    for node in $(echo $nodes | sed 's/,/ /g')
+    for node in $(echo ${node_list} | sed 's/,/ /g')
     do
         rm -f mlog.${node}
     done
 fi
 
-for node in $(echo $nodes | sed 's/,/ /g')
+for node in $(echo ${node_list} | sed 's/,/ /g')
 do
     target_file=mlog.${node}
     mlog_current=$(echo $(date +%Y%m%d-%H:%M:%S)" " $(jobsh -j ${jobid} ${node} free 2>/dev/null | grep Mem | sed 's/Mem://'))
@@ -94,6 +92,6 @@ do
         break
     fi
     echo ${mlog_current} >> ${target_file}
-    info logged $node of $nodes to file ${target_file}
+    info logged $node of ${node_list} to file ${target_file}
     sleep 1
 done
