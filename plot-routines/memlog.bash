@@ -6,7 +6,10 @@
 #
 # Purpose: Check and log memory usage on set of nodes
 #
-# Usage: ./memlog.bash -j jobid -s
+# Usage: ./memlog.bash -j jobid -r
+#
+#         For continuous logging, use something like, 
+#         while true;do ./memlog.bash -j <JOBID>;sleep 30;done
 #
 # Revision history: 2016-09-26  --  Script created, Martin Evaldsson, Rossby Centre
 #
