@@ -1,4 +1,4 @@
-#! /bin/bash -eu
+#! /bin/bash -
  
 #########################
 # 
@@ -86,8 +86,10 @@ fi
 for node in $(echo ${node_list} | sed 's/,/ /g')
 do
     target_file=mlog.${node}
-    mlog_current=$(echo $(date +%Y%m%d-%H:%M:%S)" " $(jobsh -j ${jobid} ${node} free 2>/dev/null | grep Mem | sed 's/Mem://'))
-    if [ ${#mlog_current} -lt 20 ]
+    max_mem=$(jobsh -j ${jobid} ${node} free 2>/dev/null | grep -i 'Mem:' | awk '{print $2}')
+    curr_mem=$(jobsh -j ${jobid} ${node} free 2>/dev/null | grep -i 'cache:' | awk '{print $3}')
+    mlog_current=$(echo $(date +%Y%m%d-%H:%M:%S)" "${max_mem}"    "${curr_mem})
+    if [ ${#mlog_current} -lt 23 ]
     then
         break
     fi
