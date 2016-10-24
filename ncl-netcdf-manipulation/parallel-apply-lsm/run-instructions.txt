@@ -1,0 +1,16 @@
+# How to use, 
+#  a) generate file 'all-input-files-fullpath.txt' with full paths to all files, one line per file
+#  b) set modulo to a number between 2-9
+#  c) follow the steps in 1-3
+#
+#  1 Round robin lines from 'all-input-files-fullpath.txt'
+#  2 Put each file into an ncl array, 
+#  3 prepend/append script to process each line in the array
+
+modulo=9
+find  ./ -iname "*.nc" > all-input-climo-files-fullpath.txt
+tt=-1;while read line;do tt=$((tt+1));num=$(echo 0$((tt%modulo)));echo $line | sed -e 's/^/"/' -e 's/$/",\\/'  >> "climo"-${num}.txt;done < all-input-climo-files-fullpath.txt
+for fil in $(ls climo-*);do sed -i '1iindata = (/\\' $fil; sed -i '$s/",\\/"\/\)/' $fil;done
+for fil in $(ls climo-*);do num=$(echo $fil | sed 's/.*\([0-9][0-9]\).*/\1/');cat apply-lsm-header.ncl >> climo-${num}.ncl;cat $fil >> climo-${num}.ncl;cat apply-lsm-footer.ncl >> climo-${num}.ncl;done
+rm -f climo-*txt;chmod 755 climo-*ncl
+for num in $(seq 0 $((modulo - 1)));do num=0$num;sbatch -n 1 -t 10 -A rossby_fat --mem=20000 ./climo-${num}.ncl;done
