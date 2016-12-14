@@ -64,6 +64,12 @@ OUTPUT_FOLDER="False"
 INPUT_FOLDER="False"
 TARBALL_NAME="False"
 
+# Default behaviour without any arguments
+if [ $# -eq 0 ]; then
+  usage_and_exit 0
+fi
+
+
 while getopts ":ni:t:h" opt
 do
   case $opt in
