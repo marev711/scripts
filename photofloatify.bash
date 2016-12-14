@@ -6,6 +6,7 @@
 #
 # Purpose: Run PhotoFloat on target folder and (optionally)
 #          export on Publisher
+# Reference: https://git.zx2c4.com/PhotoFloat/about/
 #
 # Usage: ./photofloatify.bash
 #
