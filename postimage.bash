@@ -14,6 +14,12 @@
 #
 ########################
 
+echo "##############################"
+echo "#                            #"
+echo "#  PLEASE USE CLBIN INSTEAD  #"
+echo "#                            #"
+echo "##############################"
+exit 0
 program=$0
 
 function exit_on_error()

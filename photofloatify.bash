@@ -6,6 +6,7 @@
 #
 # Purpose: Run PhotoFloat on target folder and (optionally)
 #          export on Publisher
+# Reference: https://git.zx2c4.com/PhotoFloat/about/
 #
 # Usage: ./photofloatify.bash
 #
@@ -62,6 +63,12 @@ function usage_and_exit {
 OUTPUT_FOLDER="False"
 INPUT_FOLDER="False"
 TARBALL_NAME="False"
+
+# Default behaviour without any arguments
+if [ $# -eq 0 ]; then
+  usage_and_exit 0
+fi
+
 
 while getopts ":ni:t:h" opt
 do

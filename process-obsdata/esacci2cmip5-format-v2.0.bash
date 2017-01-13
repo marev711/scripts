@@ -21,8 +21,8 @@
 #
 ########################
 
-cmip_variable=clt # clwvi  clivi, clt
-cci_variable=cfc # lwp     # iwp  , cfc
+cmip_variable=cltu # cltu clwvi  clivi, clt
+cci_variable=cfc_unc # cfc_unc lwp     # iwp  , cfc
 cmip_filename=${cmip_variable}_Amon_ESACCI-L3C_CLOUD-CLD_PRODUCTS-AVHRR-fv2.0_observation_r1i1p1
 # data folder as of Nov 2015: /nobackup/rossby17/rossby/joint_exp/esacci/Clouds/phase2/
 # data folder as of July 2016: /nobackup/rossby17/sm_maeva/Data/ESACCI-phase2/raw
@@ -107,6 +107,10 @@ do
         clt)
             # Extract cci_variable and scale variable (fraction -> %)
             cdo mulc,100 -selvar,${cci_variable} $line ${output_tmp}/$(basename ${line%*.nc})-${cmip_variable}.nc
+            ;;
+        cltu)
+            # Extract cci_variable and scale variable (fraction -> %)
+            cdo selvar,${cci_variable} $line ${output_tmp}/$(basename ${line%*.nc})-${cmip_variable}.nc
             ;;
         clwvi)
             # Extract lwp
