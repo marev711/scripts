@@ -1,0 +1,13 @@
+# In this example the stderr timings from IFS has been copied
+# to separate files "time-3hr.txt", "time-6hr.txt" and
+# "time-cosp.txt". To plot these, run the following lines, 
+
+$ python scripts/01-rewrite-timings.py -i samples/time-3hr.txt > t3.txt
+
+$ python scripts/01-rewrite-timings.py -i samples/time-6hr.txt > t6.txt
+
+$ python scripts/01-rewrite-timings.py -i samples/time-cosp.txt > tc.txt
+
+$ scripts/02-plot-timings.bash -n test.png -i t3.txt,t6.txt,tc.txt -l "3hr","6hr","cosp"
+
+$ eog test.png
